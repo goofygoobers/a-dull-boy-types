@@ -11,6 +11,11 @@ import AccountPage from './pages/account/account.component';
 import ConfigPage from './pages/config/configpage.component';
 import LeaderboardPage from './pages/leaderboard/leaderboardpage.component';
 
+import { generateWord } from './components/wordGenerator/wordGenerator.component';
+
+const initialWords = generateWord();
+console.log(initialWords)
+
 export default function App() {
   return (
     <Router>
@@ -32,6 +37,7 @@ export default function App() {
           </ul>
         </nav>
 
+        <h3>{initialWords}</h3>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
@@ -51,7 +57,7 @@ export default function App() {
           <Route path="/">
             <HomePage />
           </Route>
-{/* test */}
+
         </Switch>
       </div>
     </Router>
