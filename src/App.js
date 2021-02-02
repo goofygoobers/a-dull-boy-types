@@ -12,11 +12,17 @@ import ConfigPage from './pages/config/configpage.component';
 import LeaderboardPage from './pages/leaderboard/leaderboardpage.component';
 
 import { generateWord } from './components/wordGenerator/wordGenerator.component';
+import useKeyPress from './hooks/useKeyPress';
 
 const initialWords = generateWord();
 console.log(initialWords)
 
 export default function App() {
+
+  useKeyPress(key => {
+    console.log(key)
+  });
+  
   return (
     <Router>
       <div>
@@ -38,6 +44,7 @@ export default function App() {
         </nav>
 
         <h3>{initialWords}</h3>
+
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
