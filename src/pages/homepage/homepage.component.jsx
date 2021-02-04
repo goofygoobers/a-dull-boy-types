@@ -3,10 +3,17 @@ import '../../App.css';
 
 import { generateWord } from '../../components/wordGenerator/wordGenerator.component';
 import useKeyPress from '../../hooks/useKeyPress';
+import { currentTime } from '../../utils/time';
 
 const initialWords = generateWord();
 
 function HomePage() {
+
+  //tracking WPM, word count, time
+
+  const [startTime, setStartTime] = useState(); 
+  const [wordCount, setWordCount] = useState(0);
+  const [wpm, setWpm] = useState(0); 
 
   const [leftPadding, setLeftPadding] = useState(
     new Array(20).fill(' ').join('')
@@ -19,6 +26,11 @@ function HomePage() {
   const [incomingChars, setIncomingChars] = useState(initialWords.substr(1)); 
 
   useKeyPress(key => {
+
+    if (!startTime) {
+      setStartTime(currentTime());
+    }
+
     console.log(key)
     let updatedOutgoingChars = outgoingChars; 
     let updatedIncomingChars = incomingChars; 
@@ -45,19 +57,34 @@ function HomePage() {
         updatedIncomingChars += ' ' + generateWord();
       }
       setIncomingChars(updatedIncomingChars);
+      
+      /*
+      if the next character is a empty space, it means the user has successfully
+      typed a full word, increment the wordCount by 1 
+      */
+      if (incomingChars.charAt(0) === ' '){
+        setWordCount(wordCount + 1);
+        const durationInMinutes = (currentTime() - startTime) / 60000.0;
+        setWpm(((wordCount + 1) / durationInMinutes).toFixed(2));
+      }
     }
   });
   
   return (
-    
-    <p className="Character">
-      <h2>Keyboard Warriors</h2>
-    <span className="Character-out"> 
-      {(leftPadding + outgoingChars).slice(-20)}
-    </span>
-    <span className="Character-current">{currentChar}</span>
-    <span>{incomingChars.substr(0,20)}</span>
-  </p>
+    <div>
+      <p className="Character">
+        <h2>Keyboard Warriors</h2>
+      <span className="Character-out"> 
+        {(leftPadding + outgoingChars).slice(-20)}
+      </span>
+      <span className="Character-current">{currentChar}</span>
+      <span>{incomingChars.substr(0,20)}</span>
+    </p>
+    <h3> 
+      WPM: {wpm}
+    </h3>
+    </div>
+
   );
 };
 
