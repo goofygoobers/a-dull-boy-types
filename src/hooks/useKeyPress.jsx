@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'; 
 
-const useKeyPress = callback => {
+const useKeyPress = ass => {
 
   /* 
   useState hook is used here so whenever the user pressed a key, we will trigger the setter function, 'setKeyPressed'
@@ -20,7 +20,7 @@ const useKeyPress = callback => {
       */
       if (keyPressed !== key && key.length ===1){
         setKeyPressed(key);
-        // callback && callback(key)
+        ass && ass(key)
       }
     };
 
@@ -31,6 +31,11 @@ const useKeyPress = callback => {
     window.addEventListener('keydown', downHandler);
     window.addEventListener('keyup', upHandler);
 
+    /* 
+    in the return statement we want to add the removeEventListener function 
+    to ensure that anytime an EventListener is added, it is also removed to 
+    avoid slowing down the app.  
+    */
     return () => {
       window.removeEventListener('keydown', downHandler);
       window.removeEventListener('keyup', upHandler);
