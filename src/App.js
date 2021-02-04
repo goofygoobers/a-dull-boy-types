@@ -7,7 +7,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 import HomePage from './pages/homepage/homepage.component';
@@ -18,16 +17,21 @@ import LeaderboardPage from './pages/leaderboard/leaderboardpage.component';
 // const naughtyWords = require("naughty-words");
 // console.log(typeof naughtyWords)
 // console.log(naughtyWords.en);
-// console.log('test', Object.keys(naughtyWords).length)
+// console.log('test', Object.keys(naughtyWords.en).length)
 
 // function generateNaughtyWords(naughtyWords, max, min) { 
-//   // console.log(Math.random() * ( max - min ) + min)
-//     var naughtyWordsArray = naughtyWords[Math.floor(Math.random() * Object.keys(naughtyWords).length)]
+//   console.log(Math.random() * ( max - min ) + min)
+//     var i; 
+//     var naughtyWordsArray = [];
+//     for (i = 0; i < 10; i++) {
+//       var naughtyWordsGenerated = naughtyWords[Math.floor(Math.random() * Object.keys(naughtyWords).length)]
+//       naughtyWordsArray.push(naughtyWordsGenerated)
+//     }
 //   return naughtyWordsArray
 // };
 
-// const badWords = generateNaughtyWords(naughtyWords, Object.keys(naughtyWords).length, 1);
-// // console.log(badWords)
+// const badWords = generateNaughtyWords(naughtyWords.en, Object.keys(naughtyWords).length, 1);
+// console.log('badwords',badWords)
 
 
 export default function App() {

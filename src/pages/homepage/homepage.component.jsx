@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import '../../App.css';
 
 import { generateWord } from '../../components/wordGenerator/wordGenerator.component';
+import { generateNaughtyWord } from '../../components/wordGenerator/badWordGenerator.component';
 import useKeyPress from '../../hooks/useKeyPress';
 import { currentTime } from '../../utils/time';
 
-const initialWords = generateWord();
+// const initialWords = generateWord();
+const initialWords = generateNaughtyWord();
+// const initialBadWords = generateNaughtyWord();
+
 
 function HomePage() {
 
