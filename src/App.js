@@ -13,9 +13,6 @@ import AccountPage from './pages/account/account.component';
 import ConfigPage from './pages/config/configpage.component';
 import LeaderboardPage from './pages/leaderboard/leaderboardpage.component';
 
-import { generateWord } from './components/wordGenerator/wordGenerator.component';
-import useKeyPress from './hooks/useKeyPress';
-
 // const naughtyWords = require("naughty-words");
 // console.log(typeof naughtyWords)
 // console.log(naughtyWords.en);
@@ -30,50 +27,8 @@ import useKeyPress from './hooks/useKeyPress';
 // const badWords = generateNaughtyWords(naughtyWords, Object.keys(naughtyWords).length, 1);
 // // console.log(badWords)
 
-const initialWords = generateWord();
-// console.log(initialWords)
 
 export default function App() {
-
-  const [leftPadding, setLeftPadding] = useState(
-    new Array(20).fill(' ').join('')
-  );
-
-  const [outgoingChars, setOutgoingChars] = useState(''); 
-  //first letter of the first word
-  const [currentChar, setCurrentChar] = useState(initialWords.charAt(0)); 
-  //string of words/characters excluding the first character 
-  const [incomingChars, setIncomingChars] = useState(initialWords.substr(1)); 
-
-  useKeyPress(key => {
-    console.log(key)
-    let updatedOutgoingChars = outgoingChars; 
-    let updatedIncomingChars = incomingChars; 
-
-    //if key pressed matches the current character
-    if (key === currentChar) {
-
-      if (leftPadding.length > 0) {
-        setLeftPadding(leftPadding.substring(1)); 
-      }
-      updatedOutgoingChars += currentChar; 
-      setOutgoingChars(updatedOutgoingChars)
-
-      //set the current character to the value of the next incoming character
-      setCurrentChar(incomingChars.charAt(0)); 
-
-      /*
-      Since generateWord() method only creates 10 words per call
-      In the instance, the user types too fast, we want to generate more words
-      and append it to the incoming chars. 
-      */
-      updatedIncomingChars = incomingChars.substring(1);
-      if (updatedIncomingChars.split('').length < 10) {
-        updatedIncomingChars += ' ' + generateWord();
-      }
-      setIncomingChars(updatedIncomingChars);
-    }
-  });
   
   return (
     <Router>
