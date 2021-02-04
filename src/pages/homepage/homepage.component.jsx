@@ -32,6 +32,7 @@ function HomePage() {
 
     if (!startTime) {
       setStartTime(currentTime());
+      console.log('time', currentTime());
     }
 
     console.log(key)
@@ -68,6 +69,7 @@ function HomePage() {
       if (incomingChars.charAt(0) === ' '){
         setWordCount(wordCount + 1);
         const durationInMinutes = (currentTime() - startTime) / 60000.0;
+        console.log('minutes', durationInMinutes);
         setWpm(((wordCount + 1) / durationInMinutes).toFixed(2));
       }
     }
@@ -82,7 +84,7 @@ function HomePage() {
   });
   
   return (
-    <div>
+    <div className="App">
       <p className="Character">
         <h2>Keyboard Warriors</h2>
       <span className="Character-out"> 
@@ -91,9 +93,12 @@ function HomePage() {
       <span className="Character-current">{currentChar}</span>
       <span>{incomingChars.substr(0,20)}</span>
     </p>
-    <h3> 
+    <h3 className="Character"> 
       WPM: {wpm} | Accuracy: {accuracy}%
     </h3>
+    <span>
+          <button>Toggle</button>
+        </span>
     </div>
 
   );

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'; 
 
-const useKeyPress = ass => {
+const useKeyPress = callback => {
 
   /* 
   useState hook is used here so whenever the user pressed a key, we will trigger the setter function, 'setKeyPressed'
@@ -20,7 +20,7 @@ const useKeyPress = ass => {
       */
       if (keyPressed !== key && key.length ===1){
         setKeyPressed(key);
-        ass && ass(key)
+        callback && callback(key)
       }
     };
 

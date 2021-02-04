@@ -1,7 +1,8 @@
 .App {
   text-align: center;
   font-family: monospace;
-  background-color: yellow;
+  background-color: #2d2e30;
+  font-size: 40px;
 }
 
 .App-logo {
@@ -25,12 +26,17 @@
 
 .Character {
   white-space: pre;
+  color: #54585c;
 }
 
 .Character-current {
-  background-color: #09d3ac;
+  background-color: #4cbfb8;
 }
 
 .Character-out {
-  color: silver;
+  color: #7eddd3;
+}
+
+ul {
+  list-style: none; /* Remove default bullets */
 }

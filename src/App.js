@@ -1,5 +1,8 @@
 import React from "react";
 import './App.css';
+
+import { StyledLink } from './pages/homepage/homepage.styled';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,23 +34,26 @@ export default function App() {
   
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/account">Account</Link>
-            </li>
-            <li>
-              <Link to="/config">Config</Link>
-            </li>
-            <li>
-              <Link to="/leaderboard">Leaderboard</Link>
-            </li>
-          </ul>
-        </nav>
+      <div className="App">
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <StyledLink to="/">Home</StyledLink>
+              </li>
+              <li>
+                <StyledLink to="/account">Account</StyledLink>
+              </li>
+              <li>
+                <StyledLink to="/config">Config</StyledLink>
+              </li>
+              <li>
+                <StyledLink to="/leaderboard">Leaderboard</StyledLink>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
