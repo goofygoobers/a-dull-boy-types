@@ -9,8 +9,11 @@ const initialWords = generateWord();
 
 function HomePage() {
 
-  //tracking WPM, word count, time
+  //tracking typing accuracy
+  const [accuracy, setAccuracy] = useState(0);
+  const [typedChars, setTypedChars] = useState('');
 
+  //tracking WPM, word count, time
   const [startTime, setStartTime] = useState(); 
   const [wordCount, setWordCount] = useState(0);
   const [wpm, setWpm] = useState(0); 
@@ -68,6 +71,14 @@ function HomePage() {
         setWpm(((wordCount + 1) / durationInMinutes).toFixed(2));
       }
     }
+
+      const updatedTypedChars = typedChars + key;
+      setTypedChars(updatedTypedChars);
+      setAccuracy(
+        ((updatedOutgoingChars.length * 100) / updatedTypedChars.length).toFixed(
+          2,
+        ),
+      );
   });
   
   return (
@@ -81,7 +92,7 @@ function HomePage() {
       <span>{incomingChars.substr(0,20)}</span>
     </p>
     <h3> 
-      WPM: {wpm}
+      WPM: {wpm} | Accuracy: {accuracy}%
     </h3>
     </div>
 
