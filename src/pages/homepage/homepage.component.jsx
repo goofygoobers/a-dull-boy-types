@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import '../../App.css';
 
 import { generateWord } from '../../components/wordGenerator/wordGenerator.component';
-import { generateNaughtyWord } from '../../components/wordGenerator/badWordGenerator.component';
+// import { generateNaughtyWord } from '../../components/wordGenerator/badWordGenerator.component';
 import useKeyPress from '../../hooks/useKeyPress';
+import NsfwButton from '../../components/nsfwButton/nsfwButton.component';
 import { currentTime } from '../../utils/time';
 
-// const initialWords = generateWord();
-const initialWords = generateNaughtyWord();
-// const initialBadWords = generateNaughtyWord();
+const initialWords = generateWord();
+// const initialWords = generateNaughtyWord();
+console.log("home page initialwords array length: ", initialWords.length)
 
+console.log("home page initialwords: ", initialWords)
 
 function HomePage() {
 
@@ -101,8 +103,8 @@ function HomePage() {
       WPM: {wpm} | Accuracy: {accuracy}%
     </h3>
     <span>
-          <button>Toggle</button>
-        </span>
+      <NsfwButton />    
+    </span>
     </div>
 
   );
