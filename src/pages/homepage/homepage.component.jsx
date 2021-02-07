@@ -1,19 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import '../../App.css';
 
 import { generateWord } from '../../components/wordGenerator/wordGenerator.component';
-// import { generateNaughtyWord } from '../../components/wordGenerator/badWordGenerator.component';
+import { generateNaughtyWord } from '../../components/wordGenerator/badWordGenerator.component';
 import useKeyPress from '../../hooks/useKeyPress';
 import NsfwButton from '../../components/nsfwButton/nsfwButton.component';
+import  RedoButton  from '../../components/redoButton/redoButton.component';
+import { FaRedoAlt } from 'react-icons/fa';
 import { currentTime } from '../../utils/time';
 
-const initialWords = generateWord();
-// const initialWords = generateNaughtyWord();
-console.log("home page initialwords array length: ", initialWords.length)
-
-console.log("home page initialwords: ", initialWords)
+// var initialWords = generateWord();
+// // var initialWords = generateNaughtyWord();
+// console.log("home1", initialWords)
+// console.log("home1", typeof initialWords)
+// console.log("home1", initialWords.charAt(0))
 
 function HomePage() {
+
+  var initialWords = useRef(generateWord());
+  var nsfwInitialWord = useRef(generateNaughtyWord())
+
+  var nsfwInitialWordKey = useRef('')
+  var initialWordsKey = useRef('')
+
+  initialWordsKey = initialWords.current
+  nsfwInitialWordKey = nsfwInitialWord.current;
+
+  console.log("home1", initialWordsKey)
+  console.log("home1", typeof initialWordsKey)
+  console.log("home1", initialWordsKey.charAt(0))
+
+  const [title, setTitle] = useState("Keyboard Warriors")
+  // console.log("title name:", title)
 
   //tracking typing accuracy
   const [accuracy, setAccuracy] = useState(0);
@@ -28,11 +46,61 @@ function HomePage() {
     new Array(20).fill(' ').join('')
   );
 
+  //NSFW Mode
+  const [sfwMode, setSfwMode] = useState(false); 
+
+  
+  /* 
+  LOOK INTO THIS!!!! 
+  this random attempt of code to change the type of 'nsfwInitalWord' variable from 'object' type to 'string' type
+  Since the 'charAt' method will complain if the 'nsfwInitialWord' variable is NOT a 'string' type. 
+  Q: ASK is there a way to make this a string? I thought if you provide the string default value in 'useRef()' the variable assigned to it 
+  in this scneario, 'nsfwInitialWord' would also be a string
+  */
+
+  // nsfwInitialWord = initialWords;
+  console.log('HOME3 useref nsfwInitialWord value: ', nsfwInitialWord)
+  console.log('HOME3 useref type: ', typeof nsfwInitialWord)
+
+  useEffect(() => {
+
+    if (sfwMode === true){
+      
+      // nsfwInitialWord.current =generateNaughtyWord();
+      initialWordsKey = nsfwInitialWordKey
+      console.log("69 home initialwordskey value ", initialWordsKey)
+      console.log("69 home initialwordskey type ", typeof initialWordsKey)
+      
+    }
+    else if (sfwMode === false) {
+
+      // initialWords.current = generateWord();
+      initialWordsKey = initialWords.current
+      console.log("70 home initialwordskey value ", initialWordsKey)
+      console.log("70 home initialwordskey type ", typeof initialWordsKey)
+      
+    }
+  }, [sfwMode, initialWordsKey])
+
+  console.log("71 home initialwordskey value ", initialWordsKey)
+
+  if (nsfwInitialWord.current !== ''){
+    initialWords = nsfwInitialWord;
+    console.log("HOME4 updated initialWords with bad words: ", initialWords)
+  }
+
   const [outgoingChars, setOutgoingChars] = useState(''); 
   //first letter of the first word
-  const [currentChar, setCurrentChar] = useState(initialWords.charAt(0)); 
+  const [currentChar, setCurrentChar] = useState(initialWordsKey.charAt(0)); 
+  console.log("80 currentchar value: ", currentChar)
   //string of words/characters excluding the first character 
-  const [incomingChars, setIncomingChars] = useState(initialWords.substr(1)); 
+  const [incomingChars, setIncomingChars] = useState(initialWordsKey.substr(1)); 
+  console.log("81 incomingchar value: ", incomingChars)
+
+  function changeTypingMode() { 
+    setSfwMode(!sfwMode)
+    console.log('home sfw mode: ',sfwMode)
+  }
 
   useKeyPress(key => {
 
@@ -92,7 +160,7 @@ function HomePage() {
   return (
     <div className="App">
       <p className="Character">
-        <h2>Keyboard Warriors</h2>
+      <h2>{title}</h2>
       <span className="Character-out"> 
         {(leftPadding + outgoingChars).slice(-20)}
       </span>
@@ -102,8 +170,20 @@ function HomePage() {
     <h3 className="Character"> 
       WPM: {wpm} | Accuracy: {accuracy}%
     </h3>
+    {/* <span>
+      <NsfwButton onClick={() => setTitle('NSfW Warriors')}/>    
+    </span> */}
     <span>
-      <NsfwButton />    
+      <button onClick={changeTypingMode}>NSFWMODE</button>
+    </span>
+    {/* <span>
+      <button onClick={() => setTitle('NSFW Warriors')}> titleChange </button>
+    </span> */}
+    <span>
+      <RedoButton />
+      {/* <button>
+        <FaRedoAlt/>
+      </button> */}
     </span>
     </div>
 

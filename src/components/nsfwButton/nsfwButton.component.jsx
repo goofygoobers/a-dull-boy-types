@@ -4,38 +4,36 @@ import { generateNaughtyWord } from '../../components/wordGenerator/badWordGener
 
 const NsfwButton = () => { 
 
-  const [nsfwMode, setNsfwMode] = useState(false); 
-  // const [initialWord] = useRef('');
-  // var initialWord = [];
-  var initialWord = useRef([])
+  /*
+  
+  */
+  const [sfwMode, setSfwMode] = useState(false); 
+  var initialWord = useRef('')
   
 
   useEffect(() => {
-    console.log("nsfwMode changed")
 
-    if (nsfwMode === true){
-      initialWord.current = generateNaughtyWord();
-      console.log("bad words = ", initialWord)
+    if (sfwMode === true){
+      initialWord.current= generateWord();
+      console.log("111safe words = ", initialWord.current)
+      console.log("111safe word type", typeof initialWord.current)
+      // console.log("111charAt test: ", initialWord.charAt(0))
 
     }
     else {
-      initialWord.current = generateWord();
+      initialWord.current =generateNaughtyWord();
 
-      console.log("good words = ", initialWord)
+      console.log("222bad words = ", initialWord.current)
+      console.log("222bad word type", typeof initialWord.current)
+      // console.log("222charAt test: ", initialWord.charAt(0))
+
     }
-  }, [nsfwMode])
-
-  // var initialWord = [];
-  // console.log(buttonPressed)
+  }, [sfwMode])
 
   function changeTypingMode() { 
-    setNsfwMode(!nsfwMode)
-    console.log('nsfw mode: ',nsfwMode)
+    setSfwMode(!sfwMode)
+    console.log('sfw mode: ',sfwMode)
   }
-    //use effect 
-    
-  console.log("why are you empty", initialWord)
-  // console.log(initialWord)
 
   return(
     <div>
