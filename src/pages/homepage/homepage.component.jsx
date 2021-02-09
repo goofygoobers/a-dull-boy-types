@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import '../../App.css';
 
 import { generateWord } from '../../components/wordGenerator/wordGenerator.component';
@@ -6,8 +6,9 @@ import { generateNaughtyWord } from '../../components/wordGenerator/badWordGener
 import useKeyPress from '../../hooks/useKeyPress';
 import NsfwButton from '../../components/nsfwButton/nsfwButton.component';
 import  RedoButton  from '../../components/redoButton/redoButton.component';
-import { FaRedoAlt } from 'react-icons/fa';
 import { currentTime } from '../../utils/time';
+import { InitialWordContext } from '../../hooks/initialWordContext';
+
 
 // var initialWords = generateWord();
 // // var initialWords = generateNaughtyWord();
@@ -17,18 +18,26 @@ import { currentTime } from '../../utils/time';
 
 function HomePage() {
 
-  var initialWords = useRef(generateWord());
-  var nsfwInitialWord = useRef(generateNaughtyWord())
 
-  var nsfwInitialWordKey = useRef('')
-  var initialWordsKey = useRef('')
+  //NSFW Mode
+  const [sfwMode, setSfwMode] = useState(true); 
 
-  initialWordsKey = initialWords.current
-  nsfwInitialWordKey = nsfwInitialWord.current;
+  //initial words
+  const {initialValue, setInitialValue} = useContext(InitialWordContext)
+  console.log('homepagejs', typeof initialValue);
 
-  console.log("home1", initialWordsKey)
-  console.log("home1", typeof initialWordsKey)
-  console.log("home1", initialWordsKey.charAt(0))
+  // var initialWords = useRef(generateWord());
+  // var nsfwInitialWord = useRef(generateNaughtyWord())
+
+  // var nsfwInitialWordKey = useRef('')
+  // var initialWordsKey = useRef('')
+
+  var initialWordsKey = initialValue;
+  // nsfwInitialWordKey = nsfwInitialWord.current;
+
+  // console.log("home1", initialWordsKey)
+  // console.log("home1", typeof initialWordsKey)
+  // console.log("home1123", initialWordsKey.charAt(0))
 
   const [title, setTitle] = useState("Keyboard Warriors")
   // console.log("title name:", title)
@@ -46,8 +55,6 @@ function HomePage() {
     new Array(20).fill(' ').join('')
   );
 
-  //NSFW Mode
-  const [sfwMode, setSfwMode] = useState(false); 
 
   
   /* 
@@ -59,35 +66,35 @@ function HomePage() {
   */
 
   // nsfwInitialWord = initialWords;
-  console.log('HOME3 useref nsfwInitialWord value: ', nsfwInitialWord)
-  console.log('HOME3 useref type: ', typeof nsfwInitialWord)
+  // console.log('HOME3 useref nsfwInitialWord value: ', nsfwInitialWord)
+  // console.log('HOME3 useref type: ', typeof nsfwInitialWord)
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (sfwMode === true){
+  //   if (sfwMode === true){
       
-      // nsfwInitialWord.current =generateNaughtyWord();
-      initialWordsKey = nsfwInitialWordKey
-      console.log("69 home initialwordskey value ", initialWordsKey)
-      console.log("69 home initialwordskey type ", typeof initialWordsKey)
+  //     // nsfwInitialWord.current =generateNaughtyWord();
+  //     initialWordsKey = nsfwInitialWordKey
+  //     console.log("69 home initialwordskey value ", initialWordsKey)
+  //     console.log("69 home initialwordskey type ", typeof initialWordsKey)
       
-    }
-    else if (sfwMode === false) {
+  //   }
+  //   else if (sfwMode === false) {
 
-      // initialWords.current = generateWord();
-      initialWordsKey = initialWords.current
-      console.log("70 home initialwordskey value ", initialWordsKey)
-      console.log("70 home initialwordskey type ", typeof initialWordsKey)
+  //     // initialWords.current = generateWord();
+  //     initialWordsKey = initialWords.current
+  //     console.log("70 home initialwordskey value ", initialWordsKey)
+  //     console.log("70 home initialwordskey type ", typeof initialWordsKey)
       
-    }
-  }, [sfwMode, initialWordsKey])
+  //   }
+  // }, [sfwMode, initialWordsKey])
 
-  console.log("71 home initialwordskey value ", initialWordsKey)
+  // console.log("71 home initialwordskey value ", initialWordsKey)
 
-  if (nsfwInitialWord.current !== ''){
-    initialWords = nsfwInitialWord;
-    console.log("HOME4 updated initialWords with bad words: ", initialWords)
-  }
+  // if (nsfwInitialWord.current !== ''){
+  //   initialWords = nsfwInitialWord;
+  //   console.log("HOME4 updated initialWords with bad words: ", initialWords)
+  // }
 
   const [outgoingChars, setOutgoingChars] = useState(''); 
   //first letter of the first word
@@ -99,7 +106,17 @@ function HomePage() {
 
   function changeTypingMode() { 
     setSfwMode(!sfwMode)
-    console.log('home sfw mode: ',sfwMode)
+    if (sfwMode === true){
+      setInitialValue(generateNaughtyWord());
+      setTitle("NSFW Warriors");
+    }
+    else if (sfwMode === false){
+      setInitialValue(generateWord());
+      setTitle("Keyboard Warriors");
+    }
+    
+    
+    // console.log('home sfw mode: ',sfwMode)
   }
 
   useKeyPress(key => {
@@ -156,35 +173,36 @@ function HomePage() {
         ),
       );
   });
+
+
   
   return (
     <div className="App">
       <p className="Character">
       <h2>{title}</h2>
+
+
       <span className="Character-out"> 
         {(leftPadding + outgoingChars).slice(-20)}
       </span>
       <span className="Character-current">{currentChar}</span>
       <span>{incomingChars.substr(0,20)}</span>
-    </p>
+ 
+
+      </p>
     <h3 className="Character"> 
       WPM: {wpm} | Accuracy: {accuracy}%
     </h3>
-    {/* <span>
-      <NsfwButton onClick={() => setTitle('NSfW Warriors')}/>    
-    </span> */}
     <span>
-      <button onClick={changeTypingMode}>NSFWMODE</button>
+      <button onClick={changeTypingMode}>Toggle NSFW</button>
     </span>
-    {/* <span>
-      <button onClick={() => setTitle('NSFW Warriors')}> titleChange </button>
-    </span> */}
     <span>
       <RedoButton />
-      {/* <button>
-        <FaRedoAlt/>
-      </button> */}
     </span>
+
+    <div> 
+      {initialValue}
+    </div>
     </div>
 
   );

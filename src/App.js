@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './App.css';
 
 import { StyledLink } from './pages/homepage/homepage.styled';
@@ -13,28 +13,12 @@ import HomePage from './pages/homepage/homepage.component';
 import AccountPage from './pages/account/account.component';
 import ConfigPage from './pages/config/configpage.component';
 import LeaderboardPage from './pages/leaderboard/leaderboardpage.component';
-
-// const naughtyWords = require("naughty-words");
-// console.log(typeof naughtyWords)
-// console.log(naughtyWords.en);
-// console.log('test', Object.keys(naughtyWords.en).length)
-
-// function generateNaughtyWords(naughtyWords, max, min) { 
-//   console.log(Math.random() * ( max - min ) + min)
-//     var i; 
-//     var naughtyWordsArray = [];
-//     for (i = 0; i < 10; i++) {
-//       var naughtyWordsGenerated = naughtyWords[Math.floor(Math.random() * Object.keys(naughtyWords).length)]
-//       naughtyWordsArray.push(naughtyWordsGenerated)
-//     }
-//   return naughtyWordsArray
-// };
-
-// const badWords = generateNaughtyWords(naughtyWords.en, Object.keys(naughtyWords).length, 1);
-// console.log('badwords',badWords)
-
-
+import { InitialWordContext } from './hooks/initialWordContext';
+import { generateWord } from './components/wordGenerator/wordGenerator.component';
 export default function App() {
+
+  const [initialValue, setInitialValue] = useState(generateWord());
+  console.log("appjs", initialValue)
   
   return (
     <Router>
@@ -75,9 +59,11 @@ export default function App() {
             <ConfigPage />
           </Route>
 
-          <Route path="/">
-            <HomePage />
-          </Route>
+          <InitialWordContext.Provider value={{ initialValue, setInitialValue }}>
+            <Route path="/">
+              <HomePage />
+            </Route>
+          </InitialWordContext.Provider>
 
         </Switch>
       </div>
