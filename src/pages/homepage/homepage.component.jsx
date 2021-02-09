@@ -9,35 +9,14 @@ import  RedoButton  from '../../components/redoButton/redoButton.component';
 import { currentTime } from '../../utils/time';
 import { InitialWordContext } from '../../hooks/initialWordContext';
 
-
-// var initialWords = generateWord();
-// // var initialWords = generateNaughtyWord();
-// console.log("home1", initialWords)
-// console.log("home1", typeof initialWords)
-// console.log("home1", initialWords.charAt(0))
-
 function HomePage() {
-
 
   //NSFW Mode
   const [sfwMode, setSfwMode] = useState(true); 
 
   //initial words
   const {initialValue, setInitialValue} = useContext(InitialWordContext)
-  console.log('homepagejs', typeof initialValue);
-
-  // var initialWords = useRef(generateWord());
-  // var nsfwInitialWord = useRef(generateNaughtyWord())
-
-  // var nsfwInitialWordKey = useRef('')
-  // var initialWordsKey = useRef('')
-
-  var initialWordsKey = initialValue;
-  // nsfwInitialWordKey = nsfwInitialWord.current;
-
-  // console.log("home1", initialWordsKey)
-  // console.log("home1", typeof initialWordsKey)
-  // console.log("home1123", initialWordsKey.charAt(0))
+  console.log('homepagejs', initialValue);
 
   const [title, setTitle] = useState("Keyboard Warriors")
   // console.log("title name:", title)
@@ -54,20 +33,6 @@ function HomePage() {
   const [leftPadding, setLeftPadding] = useState(
     new Array(20).fill(' ').join('')
   );
-
-
-  
-  /* 
-  LOOK INTO THIS!!!! 
-  this random attempt of code to change the type of 'nsfwInitalWord' variable from 'object' type to 'string' type
-  Since the 'charAt' method will complain if the 'nsfwInitialWord' variable is NOT a 'string' type. 
-  Q: ASK is there a way to make this a string? I thought if you provide the string default value in 'useRef()' the variable assigned to it 
-  in this scneario, 'nsfwInitialWord' would also be a string
-  */
-
-  // nsfwInitialWord = initialWords;
-  // console.log('HOME3 useref nsfwInitialWord value: ', nsfwInitialWord)
-  // console.log('HOME3 useref type: ', typeof nsfwInitialWord)
 
   // useEffect(() => {
 
@@ -89,19 +54,13 @@ function HomePage() {
   //   }
   // }, [sfwMode, initialWordsKey])
 
-  // console.log("71 home initialwordskey value ", initialWordsKey)
-
-  // if (nsfwInitialWord.current !== ''){
-  //   initialWords = nsfwInitialWord;
-  //   console.log("HOME4 updated initialWords with bad words: ", initialWords)
-  // }
 
   const [outgoingChars, setOutgoingChars] = useState(''); 
   //first letter of the first word
-  const [currentChar, setCurrentChar] = useState(initialWordsKey.charAt(0)); 
+  const [currentChar, setCurrentChar] = useState(initialValue.charAt(0)); 
   console.log("80 currentchar value: ", currentChar)
   //string of words/characters excluding the first character 
-  const [incomingChars, setIncomingChars] = useState(initialWordsKey.substr(1)); 
+  const [incomingChars, setIncomingChars] = useState(initialValue.substr(1)); 
   console.log("81 incomingchar value: ", incomingChars)
 
   function changeTypingMode() { 
@@ -109,14 +68,16 @@ function HomePage() {
     if (sfwMode === true){
       setInitialValue(generateNaughtyWord());
       setTitle("NSFW Warriors");
+      setIncomingChars(initialValue.substr(1))
+      setCurrentChar(initialValue.charAt(0))
     }
     else if (sfwMode === false){
       setInitialValue(generateWord());
       setTitle("Keyboard Warriors");
+      setIncomingChars(initialValue.substr(1))
+      setCurrentChar(initialValue.charAt(0))
     }
-    
-    
-    // console.log('home sfw mode: ',sfwMode)
+
   }
 
   useKeyPress(key => {
@@ -173,8 +134,6 @@ function HomePage() {
         ),
       );
   });
-
-
   
   return (
     <div className="App">
