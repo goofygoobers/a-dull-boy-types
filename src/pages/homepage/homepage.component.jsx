@@ -63,19 +63,21 @@ function HomePage() {
   const [incomingChars, setIncomingChars] = useState(initialValue.substr(1)); 
   console.log("81 incomingchar value: ", incomingChars)
 
-  function changeTypingMode() { 
+  function changeTypingMode(event) { 
     setSfwMode(!sfwMode)
     if (sfwMode === true){
       setInitialValue(generateNaughtyWord());
       setTitle("NSFW Warriors");
       setIncomingChars(initialValue.substr(1))
       setCurrentChar(initialValue.charAt(0))
+      event.target.blur(); 
     }
     else if (sfwMode === false){
       setInitialValue(generateWord());
       setTitle("Keyboard Warriors");
       setIncomingChars(initialValue.substr(1))
       setCurrentChar(initialValue.charAt(0))
+      event.target.blur(); 
     }
 
   }
