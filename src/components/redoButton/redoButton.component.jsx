@@ -1,10 +1,10 @@
 import React from 'react'; 
 import { FaRedoAlt } from "react-icons/fa";
 
-const RedoButton = () => {
+const RedoButton = (props) => {
   return(
     <button>
-      <FaRedoAlt />
+      <FaRedoAlt onClick={props}/>
     </button>
   )
 }

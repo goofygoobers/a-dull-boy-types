@@ -1,22 +1,30 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import '../../App.css';
 
 import { generateWord } from '../../components/wordGenerator/wordGenerator.component';
 import { generateNaughtyWord } from '../../components/wordGenerator/badWordGenerator.component';
 import useKeyPress from '../../hooks/useKeyPress';
-import NsfwButton from '../../components/nsfwButton/nsfwButton.component';
+// import NsfwButton from '../../components/nsfwButton/nsfwButton.component';
 import  RedoButton  from '../../components/redoButton/redoButton.component';
 import { currentTime } from '../../utils/time';
 import { InitialWordContext } from '../../hooks/initialWordContext';
+// import { NsfwModeContext } from '../../hooks/nsfwModeContext';
+
+// import { InitialModeContext } from '../../hooks/initialModeContext';
+// import { useModeContext, useModeContextUpdate } from '../../hooks/initialModeContext';
 
 function HomePage() {
 
   //NSFW Mode
   const [sfwMode, setSfwMode] = useState(true); 
 
+  // initialMode
+  // const {initialMode, setInitialMode} = useContext(NsfwModeContext);
+  // console.log("initial mode home page", initialMode)
+
   //initial words
-  const {initialValue, setInitialValue} = useContext(InitialWordContext)
-  console.log('homepagejs', initialValue);
+  var {initialValue, setInitialValue} = useContext(InitialWordContext)
+  console.log("initialValuehomepage:", initialValue)
 
   const [title, setTitle] = useState("Keyboard Warriors")
   // console.log("title name:", title)
@@ -58,17 +66,26 @@ function HomePage() {
   const [outgoingChars, setOutgoingChars] = useState(''); 
   //first letter of the first word
   const [currentChar, setCurrentChar] = useState(initialValue.charAt(0)); 
-  console.log("80 currentchar value: ", currentChar)
   //string of words/characters excluding the first character 
   const [incomingChars, setIncomingChars] = useState(initialValue.substr(1)); 
-  console.log("81 incomingchar value: ", incomingChars)
+
+  function resetApp() {
+    console.log("resetting app");
+    setInitialValue(generateWord());
+    setOutgoingChars('');
+    setCurrentChar(initialValue.charAt(0));
+    setIncomingChars(initialValue.substr(1));
+  }
+
 
   function changeTypingMode(event) { 
     setSfwMode(!sfwMode)
+    console.log("what mode are we in??", sfwMode)
     if (sfwMode === true){
       setInitialValue(generateNaughtyWord());
-      setTitle("NSFW Warriors");
+      setTitle("Toxic Warriors");
       setIncomingChars(initialValue.substr(1))
+      console.log("sfwMode111true new intialvalue", initialValue)
       setCurrentChar(initialValue.charAt(0))
       event.target.blur(); 
     }
@@ -76,6 +93,7 @@ function HomePage() {
       setInitialValue(generateWord());
       setTitle("Keyboard Warriors");
       setIncomingChars(initialValue.substr(1))
+      console.log("sfwMode111false new intialvalue", initialValue)
       setCurrentChar(initialValue.charAt(0))
       event.target.blur(); 
     }
@@ -111,8 +129,17 @@ function HomePage() {
       and append it to the incoming chars. 
       */
       updatedIncomingChars = incomingChars.substring(1);
-      if (updatedIncomingChars.split('').length < 10) {
-        updatedIncomingChars += ' ' + generateWord();
+      if (updatedIncomingChars.split('').length < 20) {
+        if (sfwMode === true){
+          updatedIncomingChars += ' ' + generateWord();
+          console.log("Geneartion - what mode are we in? ", sfwMode)
+          console.log("generating good words!!!")
+        } 
+        else if(sfwMode === false) {
+            updatedIncomingChars += ' ' + generateNaughtyWord();
+            console.log("Generation - what mode are we in? ", sfwMode)
+            console.log("generating BAD words!!")
+        }
       }
       setIncomingChars(updatedIncomingChars);
       
@@ -140,31 +167,27 @@ function HomePage() {
   return (
     <div className="App">
       <p className="Character">
-      <h2>{title}</h2>
-
+      <h2>Keyboard Warriors</h2>
 
       <span className="Character-out"> 
         {(leftPadding + outgoingChars).slice(-20)}
       </span>
       <span className="Character-current">{currentChar}</span>
       <span>{incomingChars.substr(0,20)}</span>
- 
-
       </p>
     <h3 className="Character"> 
       WPM: {wpm} | Accuracy: {accuracy}%
     </h3>
     <span>
-      <button onClick={changeTypingMode}>Toggle NSFW</button>
+      <button onClick={changeTypingMode}>FORTNITE Mode</button>
     </span>
-    <span>
-      <RedoButton />
-    </span>
-
-    <div> 
+    {/* <span>
+      <RedoButton onClick={resetApp}/>
+    </span> */}
+    {/* <div> 
       {initialValue}
-    </div>
-    </div>
+    </div> */}
+  </div>
 
   );
 };

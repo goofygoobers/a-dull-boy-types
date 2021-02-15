@@ -4,11 +4,8 @@ import { generateNaughtyWord } from '../../components/wordGenerator/badWordGener
 
 const NsfwButton = () => { 
 
-  /*
-  
-  */
   const [sfwMode, setSfwMode] = useState(false); 
-  var initialWord = useRef('')
+  var initialWord = useRef('');
   
 
   useEffect(() => {

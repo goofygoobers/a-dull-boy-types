@@ -14,12 +14,14 @@ import AccountPage from './pages/account/account.component';
 import ConfigPage from './pages/config/configpage.component';
 import LeaderboardPage from './pages/leaderboard/leaderboardpage.component';
 import { InitialWordContext } from './hooks/initialWordContext';
+import { NsfwModeContext } from './hooks/nsfwModeContext';
+// import { InitialModeProvider } from './hooks/initialModeContext';
 import { generateWord } from './components/wordGenerator/wordGenerator.component';
 export default function App() {
 
+  const [initialMode, setInitialMode] = useState(true); 
   const [initialValue, setInitialValue] = useState(generateWord());
-  console.log("appjs", initialValue)
-  
+
   return (
     <Router>
       <div className="App">
@@ -58,13 +60,13 @@ export default function App() {
           <Route path="/config">
             <ConfigPage />
           </Route>
-
-          <InitialWordContext.Provider value={{ initialValue, setInitialValue }}>
-            <Route path="/">
-              <HomePage />
-            </Route>
-          </InitialWordContext.Provider>
-
+          <NsfwModeContext.Provider value={{ initialMode, setInitialMode }}>
+            <InitialWordContext.Provider value={{ initialValue, setInitialValue }}>
+              <Route path="/">
+                <HomePage />
+              </Route>
+            </InitialWordContext.Provider>
+          </NsfwModeContext.Provider>
         </Switch>
       </div>
     </Router>
