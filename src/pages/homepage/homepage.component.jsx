@@ -5,13 +5,15 @@ import { generateWord } from '../../components/wordGenerator/wordGenerator.compo
 import { generateNaughtyWord } from '../../components/wordGenerator/badWordGenerator.component';
 import useKeyPress from '../../hooks/useKeyPress';
 // import NsfwButton from '../../components/nsfwButton/nsfwButton.component';
-import  RedoButton  from '../../components/redoButton/redoButton.component';
+// import  RedoButton  from '../../components/redoButton/redoButton.component';
 import { currentTime } from '../../utils/time';
 import { InitialWordContext } from '../../hooks/initialWordContext';
 // import { NsfwModeContext } from '../../hooks/nsfwModeContext';
 
 // import { InitialModeContext } from '../../hooks/initialModeContext';
 // import { useModeContext, useModeContextUpdate } from '../../hooks/initialModeContext';
+
+import Timer from '../../components/timer/timer.component';
 
 function HomePage() {
 
@@ -168,7 +170,7 @@ function HomePage() {
     <div className="App">
       <p className="Character">
       <h2>Keyboard Warriors</h2>
-
+      <Timer />
       <span className="Character-out"> 
         {(leftPadding + outgoingChars).slice(-20)}
       </span>
