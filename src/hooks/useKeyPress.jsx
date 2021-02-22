@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react'; 
-
-
+import { useState, useEffect, useContext } from 'react'; 
+import { InitialModeContext } from '../context/initialModeContext';
 
 const useKeyPress = callback => {
   var tabPressed = false
@@ -11,8 +10,8 @@ const useKeyPress = callback => {
   we will also track the current key being pressed by storing it in, 'keyPressed'
   */
 
-  const [keyPressed, setKeyPressed] = useState()
-
+  const [keyPressed, setKeyPressed] = useState();
+  const [isStarted, setIsStarted] = useContext(InitialModeContext); 
 
   useEffect(() => {
     const downHandler = ({ key }) => {
@@ -26,6 +25,7 @@ const useKeyPress = callback => {
       */
       if (keyPressed !== key && key.length ===1){
         // console.log(key, key.length)
+        setIsStarted(true); 
         setKeyPressed(key);
         callback && callback(key)
       }

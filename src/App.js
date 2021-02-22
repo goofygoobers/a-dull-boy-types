@@ -15,6 +15,7 @@ import ConfigPage from './pages/config/configpage.component';
 import LeaderboardPage from './pages/leaderboard/leaderboardpage.component';
 import { InitialWordContext } from './hooks/initialWordContext';
 import { NsfwModeContext } from './hooks/nsfwModeContext';
+import { InitialModeProvider } from './context/initialModeContext';
 // import { InitialModeProvider } from './hooks/initialModeContext';
 import { generateWord } from './components/wordGenerator/wordGenerator.component';
 export default function App() {
@@ -43,8 +44,6 @@ export default function App() {
             </ul>
           </nav>
         </div>
-
-
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
@@ -60,13 +59,15 @@ export default function App() {
           <Route path="/config">
             <ConfigPage />
           </Route>
-          <NsfwModeContext.Provider value={{ initialMode, setInitialMode }}>
-            <InitialWordContext.Provider value={{ initialValue, setInitialValue }}>
-              <Route path="/">
-                <HomePage />
-              </Route>
-            </InitialWordContext.Provider>
-          </NsfwModeContext.Provider>
+          <InitialModeProvider>
+            <NsfwModeContext.Provider value={{ initialMode, setInitialMode }}>
+              <InitialWordContext.Provider value={{ initialValue, setInitialValue }}>
+                <Route path="/">
+                  <HomePage />
+                </Route>
+              </InitialWordContext.Provider>
+            </NsfwModeContext.Provider>
+          </InitialModeProvider>
         </Switch>
       </div>
     </Router>

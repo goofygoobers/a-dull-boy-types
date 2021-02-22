@@ -8,10 +8,6 @@ import useKeyPress from '../../hooks/useKeyPress';
 // import  RedoButton  from '../../components/redoButton/redoButton.component';
 import { currentTime } from '../../utils/time';
 import { InitialWordContext } from '../../hooks/initialWordContext';
-// import { NsfwModeContext } from '../../hooks/nsfwModeContext';
-
-// import { InitialModeContext } from '../../hooks/initialModeContext';
-// import { useModeContext, useModeContextUpdate } from '../../hooks/initialModeContext';
 
 import Timer from '../../components/timer/timer.component';
 
@@ -19,10 +15,7 @@ function HomePage() {
 
   //NSFW Mode
   const [sfwMode, setSfwMode] = useState(true); 
-
-  // initialMode
-  // const {initialMode, setInitialMode} = useContext(NsfwModeContext);
-  // console.log("initial mode home page", initialMode)
+  console.log("what mode are we in??", sfwMode)
 
   //initial words
   var {initialValue, setInitialValue} = useContext(InitialWordContext)
@@ -44,27 +37,6 @@ function HomePage() {
     new Array(20).fill(' ').join('')
   );
 
-  // useEffect(() => {
-
-  //   if (sfwMode === true){
-      
-  //     // nsfwInitialWord.current =generateNaughtyWord();
-  //     initialWordsKey = nsfwInitialWordKey
-  //     console.log("69 home initialwordskey value ", initialWordsKey)
-  //     console.log("69 home initialwordskey type ", typeof initialWordsKey)
-      
-  //   }
-  //   else if (sfwMode === false) {
-
-  //     // initialWords.current = generateWord();
-  //     initialWordsKey = initialWords.current
-  //     console.log("70 home initialwordskey value ", initialWordsKey)
-  //     console.log("70 home initialwordskey type ", typeof initialWordsKey)
-      
-  //   }
-  // }, [sfwMode, initialWordsKey])
-
-
   const [outgoingChars, setOutgoingChars] = useState(''); 
   //first letter of the first word
   const [currentChar, setCurrentChar] = useState(initialValue.charAt(0)); 
@@ -82,7 +54,7 @@ function HomePage() {
 
   function changeTypingMode(event) { 
     setSfwMode(!sfwMode)
-    console.log("what mode are we in??", sfwMode)
+
     if (sfwMode === true){
       setInitialValue(generateNaughtyWord());
       setTitle("Toxic Warriors");
