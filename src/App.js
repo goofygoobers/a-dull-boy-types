@@ -22,8 +22,8 @@ import { WordProvider } from './context/wordContext';
 import { generateWord } from './components/wordGenerator/wordGenerator.component';
 export default function App() {
 
-  const [initialMode, setInitialMode] = useState(true); 
-  const [initialValue, setInitialValue] = useState(generateWord());
+  // const [initialMode, setInitialMode] = useState(true); 
+  // const [initialValue, setInitialValue] = useState(generateWord());
 
   return (
     <Router>
@@ -61,19 +61,19 @@ export default function App() {
           <Route path="/config">
             <ConfigPage />
           </Route>
-          {/* <WordProvider> */}
+          <WordProvider>
             <SfwModeProvider>
               <InitialModeProvider>
-              <NsfwModeContext.Provider value={{ initialMode, setInitialMode }}>
-                <InitialWordContext.Provider value={{ initialValue, setInitialValue }}>
+              {/* <NsfwModeContext.Provider value={{ initialMode, setInitialMode }}> */}
+                {/* <InitialWordContext.Provider value={{ initialValue, setInitialValue }}> */}
                   <Route path="/">
                     <HomePage />
                   </Route>
-                </InitialWordContext.Provider>
-              </NsfwModeContext.Provider>
+                {/* </InitialWordContext.Provider> */}
+              {/* </NsfwModeContext.Provider> */}
             </InitialModeProvider>
             </SfwModeProvider>
-          {/* </WordProvider> */}
+          </WordProvider>
         </Switch>
       </div>
     </Router>
