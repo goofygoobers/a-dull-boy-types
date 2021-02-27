@@ -2,13 +2,13 @@ import React, { useState, useContext } from "react";
 import '../../App.css';
 
 import { SfwModeContext } from '../../context/sfwModeContext';
-import { InitialWordContext } from '../../hooks/initialWordContext';
+// import { InitialWordContext } from '../../hooks/initialWordContext';
 import { WordContext } from '../../context/wordContext';
 import Timer from '../../components/timer/timer.component';
 import { generateWord } from '../../components/wordGenerator/wordGenerator.component';
 import { generateNaughtyWord } from '../../components/wordGenerator/badWordGenerator.component';
 import useKeyPress from '../../hooks/useKeyPress';
-// import NsfwButton from '../../components/nsfwButton/nsfwButton.component';
+import NsfwButton from '../../components/nsfwButton/nsfwButton.component';
 // import  RedoButton  from '../../components/redoButton/redoButton.component';
 import { currentTime } from '../../utils/time';
 
@@ -20,10 +20,12 @@ function HomePage() {
   console.log("what mode are we in??context", sfwMode)
 
   //initial words
-  // var {initialValue, setInitialValue} = useContext(WordContext)
-  var {initialValue, setInitialValue} = useContext(InitialWordContext)
+  var [initialValue, setInitialValue] = useContext(WordContext);
+  // var {initialValue, setInitialValue} = useContext(InitialWordContext)
   if (initialValue === undefined){
-   throw new Error('context value is undefined') 
+    // setInitialValue(generateWord);
+    initialValue = generateWord();
+    console.log('new', initialValue)
   }
 
   const [title, setTitle] = useState("Keyboard Warriors")

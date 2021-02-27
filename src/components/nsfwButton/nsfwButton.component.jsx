@@ -8,7 +8,7 @@ const NsfwButton = () => {
 
   // const [sfwMode, setSfwMode] = useState(false); 
   const [sfwMode, setSfwMode] = useContext(SfwModeContext); 
-  const [initialValue, setInitialValue] = useContext(WordContext);
+  var [initialValue, setInitialValue] = useContext(WordContext);
   // var initialWord = useRef('')
   
   useEffect(() => {
