@@ -1,25 +1,30 @@
 import React, { useState, useContext } from "react";
 import '../../App.css';
 
+import { SfwModeContext } from '../../context/sfwModeContext';
+import { InitialWordContext } from '../../hooks/initialWordContext';
+import { WordContext } from '../../context/wordContext';
+import Timer from '../../components/timer/timer.component';
 import { generateWord } from '../../components/wordGenerator/wordGenerator.component';
 import { generateNaughtyWord } from '../../components/wordGenerator/badWordGenerator.component';
 import useKeyPress from '../../hooks/useKeyPress';
 // import NsfwButton from '../../components/nsfwButton/nsfwButton.component';
 // import  RedoButton  from '../../components/redoButton/redoButton.component';
 import { currentTime } from '../../utils/time';
-import { InitialWordContext } from '../../hooks/initialWordContext';
 
-import Timer from '../../components/timer/timer.component';
 
 function HomePage() {
 
   //NSFW Mode
-  const [sfwMode, setSfwMode] = useState(true); 
-  console.log("what mode are we in??", sfwMode)
+  const [sfwMode, setSfwMode] = useContext(SfwModeContext); 
+  console.log("what mode are we in??context", sfwMode)
 
   //initial words
+  // var {initialValue, setInitialValue} = useContext(WordContext)
   var {initialValue, setInitialValue} = useContext(InitialWordContext)
-  console.log("initialValuehomepage:", initialValue)
+  if (initialValue === undefined){
+   throw new Error('context value is undefined') 
+  }
 
   const [title, setTitle] = useState("Keyboard Warriors")
   // console.log("title name:", title)
@@ -67,11 +72,10 @@ function HomePage() {
       setInitialValue(generateWord());
       setTitle("Keyboard Warriors");
       setIncomingChars(initialValue.substr(1))
-      console.log("sfwMode111false new intialvalue", initialValue)
+      console.log("sfwMode111false new initialvalue", initialValue)
       setCurrentChar(initialValue.charAt(0))
       event.target.blur(); 
     }
-
   }
 
   useKeyPress(key => {
@@ -140,7 +144,7 @@ function HomePage() {
   
   return (
     <div className="App">
-      <p className="Character">
+      <div className="Character">
       <h2>Keyboard Warriors</h2>
       <Timer />
       <span className="Character-out"> 
@@ -148,13 +152,14 @@ function HomePage() {
       </span>
       <span className="Character-current">{currentChar}</span>
       <span>{incomingChars.substr(0,20)}</span>
-      </p>
+      </div>
     <h3 className="Character"> 
       WPM: {wpm} | Accuracy: {accuracy}%
     </h3>
     <span>
       <button onClick={changeTypingMode}>FORTNITE Mode</button>
     </span>
+    {/* <NsfwButton /> */}
     {/* <span>
       <RedoButton onClick={resetApp}/>
     </span> */}
