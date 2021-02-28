@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import '../../App.css';
 
+import { InitialStateContext } from '../../context/initialStateContext';
 import { SfwModeContext } from '../../context/sfwModeContext';
 // import { InitialWordContext } from '../../hooks/initialWordContext';
 import { WordContext } from '../../context/wordContext';
@@ -8,11 +9,14 @@ import Timer from '../../components/timer/timer.component';
 import { generateWord } from '../../components/wordGenerator/wordGenerator.component';
 import { generateNaughtyWord } from '../../components/wordGenerator/badWordGenerator.component';
 import useKeyPress from '../../hooks/useKeyPress';
-import NsfwButton from '../../components/nsfwButton/nsfwButton.component';
+// import NsfwButton from '../../components/nsfwButton/nsfwButton.component';
 // import  RedoButton  from '../../components/redoButton/redoButton.component';
 import { currentTime } from '../../utils/time';
 
 function HomePage() {
+
+  const {state, dispatch} = useContext(InitialStateContext); 
+  console.log("initialState Json object", state.sfwMode);
 
   //NSFW Mode
   const [sfwMode, setSfwMode] = useContext(SfwModeContext); 
@@ -57,6 +61,14 @@ function HomePage() {
     setIncomingChars(initialValue.substr(1));
   }
 
+  function changeNSFWMode() {
+    dispatch({type: 'NSFW'});
+    console.log('hihihihihih', state.sfwMode);
+  }
+
+  function changeNormalMode() {
+    dispatch({type: 'REDO'});
+  }
 
   function changeTypingMode(event) { 
     setSfwMode(!sfwMode)
@@ -146,7 +158,11 @@ function HomePage() {
   return (
     <div className="App">
       <div className="Character">
-      <h2>{title}</h2>
+      {/* <div>{state.sfwMode ?
+          <h2> Keyboard Warriors</h2>:
+          <h2> NSFW Warriors</h2>}
+      </div> */}
+      <div>{state.title}</div>
       <Timer />
       <span className="Character-out"> 
         {(leftPadding + outgoingChars).slice(-20)}
@@ -159,6 +175,9 @@ function HomePage() {
     </h3>
     <span>
       <button onClick={changeTypingMode}>FORTNITE Mode</button>
+      <button onClick={changeNSFWMode}>NSFW Mode</button>
+      <button onClick={changeNormalMode}>Normal Mode</button>
+      
     </span>
     {/* <NsfwButton /> */}
     {/* <span>

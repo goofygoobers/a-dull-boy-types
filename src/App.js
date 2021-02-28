@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import './App.css';
 
 import { StyledLink } from './pages/homepage/homepage.styled';
@@ -13,17 +13,12 @@ import HomePage from './pages/homepage/homepage.component';
 import AccountPage from './pages/account/account.component';
 import ConfigPage from './pages/config/configpage.component';
 import LeaderboardPage from './pages/leaderboard/leaderboardpage.component';
-import { InitialWordContext } from './hooks/initialWordContext';
-import { NsfwModeContext } from './hooks/nsfwModeContext';
 import { InitialModeProvider } from './context/initialModeContext';
 import { SfwModeProvider } from './context/sfwModeContext';
 import { WordProvider } from './context/wordContext';
+import { InitialStateProvider } from './context/initialStateContext';
 
-import { generateWord } from './components/wordGenerator/wordGenerator.component';
 export default function App() {
-
-  // const [initialMode, setInitialMode] = useState(true); 
-  // const [initialValue, setInitialValue] = useState(generateWord());
 
   return (
     <Router>
@@ -61,19 +56,18 @@ export default function App() {
           <Route path="/config">
             <ConfigPage />
           </Route>
-          <WordProvider>
-            <SfwModeProvider>
-              <InitialModeProvider>
-              {/* <NsfwModeContext.Provider value={{ initialMode, setInitialMode }}> */}
-                {/* <InitialWordContext.Provider value={{ initialValue, setInitialValue }}> */}
-                  <Route path="/">
-                    <HomePage />
-                  </Route>
-                {/* </InitialWordContext.Provider> */}
-              {/* </NsfwModeContext.Provider> */}
-            </InitialModeProvider>
-            </SfwModeProvider>
-          </WordProvider>
+          <InitialStateProvider>
+            <WordProvider>
+              <SfwModeProvider>
+                <InitialModeProvider>
+                    <Route path="/">
+                      <HomePage />
+                    </Route>
+              </InitialModeProvider>
+              </SfwModeProvider>
+            </WordProvider>
+          </InitialStateProvider>
+
         </Switch>
       </div>
     </Router>

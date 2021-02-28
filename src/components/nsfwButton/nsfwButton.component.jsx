@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useContext } from 'react'; 
+import React, { useEffect, useContext } from 'react'; 
 import { generateWord } from '../../components/wordGenerator/wordGenerator.component';
 import { generateNaughtyWord } from '../../components/wordGenerator/badWordGenerator.component';
 import { WordContext } from '../../context/wordContext';
