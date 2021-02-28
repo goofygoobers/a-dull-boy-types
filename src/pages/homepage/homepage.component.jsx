@@ -12,7 +12,6 @@ import NsfwButton from '../../components/nsfwButton/nsfwButton.component';
 // import  RedoButton  from '../../components/redoButton/redoButton.component';
 import { currentTime } from '../../utils/time';
 
-
 function HomePage() {
 
   //NSFW Mode
@@ -147,7 +146,7 @@ function HomePage() {
   return (
     <div className="App">
       <div className="Character">
-      <h2>Keyboard Warriors</h2>
+      <h2>{title}</h2>
       <Timer />
       <span className="Character-out"> 
         {(leftPadding + outgoingChars).slice(-20)}
