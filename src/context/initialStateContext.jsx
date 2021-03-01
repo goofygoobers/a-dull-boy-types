@@ -1,12 +1,17 @@
 import React, { createContext, useReducer } from 'react'; 
+import { generateNaughtyWord } from '../components/wordGenerator/badWordGenerator.component';
 import { generateWord } from '../components/wordGenerator/wordGenerator.component';
 import { currentTime } from '../utils/time';
+
+var testWords = generateWord();
+console.log("testword", testWords)
+
 
 const initialState = {
   title: "Keyboard Warriors",
   wordCount: 0, 
   sfwMode: true, 
-  initialValue: generateWord, 
+  initialValue: testWords, 
   accuracy: 0, 
   typedChars: '', 
   startTime: currentTime(),
@@ -23,7 +28,7 @@ const reducer = (state, action) => {
         title: "Keyboard Warriors",
         wordCount: 0, 
         sfwMode: true, 
-        initialValue: generateWord, 
+        initialValue: generateWord(), 
         accuracy: 0, 
         typedChars: '', 
         startTime: currentTime(),
@@ -31,15 +36,17 @@ const reducer = (state, action) => {
       };
     case "NSFW": 
       return {
+        ...state,
         title: "NSFW Mode",
         sfwMode: false,
+        initialValue: generateNaughtyWord(),
       }
     default:
       return state;
   }
 }
 
-export const InitialStateContext = createContext();
+export const  InitialStateContext = createContext();
 
 export const InitialStateProvider = props => {
   const [state, dispatch] = useReducer(reducer, initialState);

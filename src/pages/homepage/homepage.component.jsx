@@ -16,23 +16,22 @@ import { currentTime } from '../../utils/time';
 function HomePage() {
 
   const {state, dispatch} = useContext(InitialStateContext); 
-  console.log("initialState Json object", state.sfwMode);
+  console.log("FFFF", state.initialValue);
 
   //NSFW Mode
   const [sfwMode, setSfwMode] = useContext(SfwModeContext); 
-  console.log("what mode are we in??context", sfwMode)
+  // console.log("what mode are we in??context", sfwMode)
 
   //initial words
   var [initialValue, setInitialValue] = useContext(WordContext);
+  console.log("zzzz", initialValue);
+  setInitialValue(state.initialValue);
   // var {initialValue, setInitialValue} = useContext(InitialWordContext)
   if (initialValue === undefined){
     // setInitialValue(generateWord);
-    initialValue = generateWord();
+    initialValue = state.initialValue;
     console.log('new', initialValue)
   }
-
-  const [title, setTitle] = useState("Keyboard Warriors")
-  // console.log("title name:", title)
 
   //tracking typing accuracy
   const [accuracy, setAccuracy] = useState(0);
@@ -49,46 +48,36 @@ function HomePage() {
 
   const [outgoingChars, setOutgoingChars] = useState(''); 
   //first letter of the first word
-  const [currentChar, setCurrentChar] = useState(initialValue.charAt(0)); 
+  const [currentChar, setCurrentChar] = useState(state.initialValue.charAt(0)); 
   //string of words/characters excluding the first character 
-  const [incomingChars, setIncomingChars] = useState(initialValue.substr(1)); 
-
-  function resetApp() {
-    console.log("resetting app");
-    setInitialValue(generateWord());
-    setOutgoingChars('');
-    setCurrentChar(initialValue.charAt(0));
-    setIncomingChars(initialValue.substr(1));
-  }
-
-  function changeNSFWMode() {
-    dispatch({type: 'NSFW'});
-    console.log('hihihihihih', state.sfwMode);
-  }
-
-  function changeNormalMode() {
-    dispatch({type: 'REDO'});
-  }
+  const [incomingChars, setIncomingChars] = useState(state.initialValue.substr(1)); 
 
   function changeTypingMode(event) { 
-    setSfwMode(!sfwMode)
 
     if (sfwMode === true){
       setInitialValue(generateNaughtyWord());
-      setTitle("Toxic Warriors");
-      setIncomingChars(initialValue.substr(1))
-      console.log("sfwMode111true new intialvalue", initialValue)
-      setCurrentChar(initialValue.charAt(0))
+      setIncomingChars(state.initialValue.substr(1))
+      console.log("sfwMode111true new intialvalue", state.initialValue)
+      setCurrentChar(state.initialValue.charAt(0))
       event.target.blur(); 
     }
     else if (sfwMode === false){
       setInitialValue(generateWord());
-      setTitle("Keyboard Warriors");
-      setIncomingChars(initialValue.substr(1))
-      console.log("sfwMode111false new initialvalue", initialValue)
-      setCurrentChar(initialValue.charAt(0))
+      setIncomingChars(state.initialValue.substr(1))
+      console.log("sfwMode111false new initialvalue", state.initialValue)
+      setCurrentChar(state.initialValue.charAt(0))
       event.target.blur(); 
     }
+  }
+
+  function changeNSFWMode(event) {
+    dispatch({type: 'NSFW'});
+    changeTypingMode(event);
+  }
+
+  function changeNormalMode(event) {
+    dispatch({type: 'REDO'});
+    changeTypingMode(event);
   }
 
   useKeyPress(key => {
@@ -162,7 +151,7 @@ function HomePage() {
           <h2> Keyboard Warriors</h2>:
           <h2> NSFW Warriors</h2>}
       </div> */}
-      <div>{state.title}</div>
+      <h2>{state.title}</h2>
       <Timer />
       <span className="Character-out"> 
         {(leftPadding + outgoingChars).slice(-20)}
@@ -176,7 +165,7 @@ function HomePage() {
     <span>
       <button onClick={changeTypingMode}>FORTNITE Mode</button>
       <button onClick={changeNSFWMode}>NSFW Mode</button>
-      <button onClick={changeNormalMode}>Normal Mode</button>
+      <button onClick={changeNormalMode}>REDO</button>
       
     </span>
     {/* <NsfwButton /> */}
