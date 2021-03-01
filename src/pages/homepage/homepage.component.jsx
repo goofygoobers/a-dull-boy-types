@@ -1,8 +1,6 @@
 import React, { useState, useContext } from "react";
 import '../../App.css';
 import { InitialStateContext } from '../../context/initialStateContext';
-import { SfwModeContext } from '../../context/sfwModeContext';
-import { WordContext } from '../../context/wordContext';
 import Timer from '../../components/timer/timer.component';
 import { generateWord } from '../../components/wordGenerator/wordGenerator.component';
 import { generateNaughtyWord } from '../../components/wordGenerator/badWordGenerator.component';
@@ -12,16 +10,6 @@ import { currentTime } from '../../utils/time';
 function HomePage() {
 
   const {state, dispatch} = useContext(InitialStateContext); 
-
-  //NSFW Mode
-  // const [sfwMode, setSfwMode] = useContext(SfwModeContext); 
-
-
-  //initial words
-  var [initialValue, setInitialValue] = useContext(WordContext);
-  if (initialValue === undefined){
-    initialValue = state.initialValue;
-  }
 
   //tracking typing accuracy
   const [accuracy, setAccuracy] = useState(0);
