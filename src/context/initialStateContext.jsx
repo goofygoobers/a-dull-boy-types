@@ -39,6 +39,10 @@ const reducer = (state, action) => {
         ...state,
         title: "NSFW Mode",
         sfwMode: false,
+        wordCount: 0, 
+        accuracy: 0, 
+        typedChars: '', 
+        wpm: 0, 
         initialValue: generateNaughtyWord(),
       }
     default:

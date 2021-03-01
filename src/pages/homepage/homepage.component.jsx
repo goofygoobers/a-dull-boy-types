@@ -1,36 +1,26 @@
 import React, { useState, useContext } from "react";
 import '../../App.css';
-
 import { InitialStateContext } from '../../context/initialStateContext';
 import { SfwModeContext } from '../../context/sfwModeContext';
-// import { InitialWordContext } from '../../hooks/initialWordContext';
 import { WordContext } from '../../context/wordContext';
 import Timer from '../../components/timer/timer.component';
 import { generateWord } from '../../components/wordGenerator/wordGenerator.component';
 import { generateNaughtyWord } from '../../components/wordGenerator/badWordGenerator.component';
 import useKeyPress from '../../hooks/useKeyPress';
-// import NsfwButton from '../../components/nsfwButton/nsfwButton.component';
-// import  RedoButton  from '../../components/redoButton/redoButton.component';
 import { currentTime } from '../../utils/time';
 
 function HomePage() {
 
   const {state, dispatch} = useContext(InitialStateContext); 
-  console.log("FFFF", state.initialValue);
 
   //NSFW Mode
-  const [sfwMode, setSfwMode] = useContext(SfwModeContext); 
-  // console.log("what mode are we in??context", sfwMode)
+  // const [sfwMode, setSfwMode] = useContext(SfwModeContext); 
+
 
   //initial words
   var [initialValue, setInitialValue] = useContext(WordContext);
-  console.log("zzzz", initialValue);
-  setInitialValue(state.initialValue);
-  // var {initialValue, setInitialValue} = useContext(InitialWordContext)
   if (initialValue === undefined){
-    // setInitialValue(generateWord);
     initialValue = state.initialValue;
-    console.log('new', initialValue)
   }
 
   //tracking typing accuracy
@@ -54,14 +44,14 @@ function HomePage() {
 
   function changeTypingMode(event) { 
 
-    if (sfwMode === true){
+    if (state.sfwMode === true){
       setInitialValue(generateNaughtyWord());
       setIncomingChars(state.initialValue.substr(1))
       console.log("sfwMode111true new intialvalue", state.initialValue)
       setCurrentChar(state.initialValue.charAt(0))
       event.target.blur(); 
     }
-    else if (sfwMode === false){
+    else if (state.sfwMode === false){
       setInitialValue(generateWord());
       setIncomingChars(state.initialValue.substr(1))
       console.log("sfwMode111false new initialvalue", state.initialValue)
@@ -72,12 +62,24 @@ function HomePage() {
 
   function changeNSFWMode(event) {
     dispatch({type: 'NSFW'});
-    changeTypingMode(event);
+    // changeTypingMode(event);
+    setInitialValue(generateNaughtyWord());
+    setIncomingChars(state.initialValue.substr(1))
+    console.log("sfwMode111true new intialvalue", state.initialValue)
+    setCurrentChar(state.initialValue.charAt(0))
+    setOutgoingChars('')
+    event.target.blur(); 
   }
 
   function changeNormalMode(event) {
     dispatch({type: 'REDO'});
-    changeTypingMode(event);
+    // changeTypingMode(event);
+    setInitialValue(generateWord());
+    setIncomingChars(state.initialValue.substr(1))
+    console.log("sfwMode111false new initialvalue", state.initialValue)
+    setCurrentChar(state.initialValue.charAt(0))
+    setOutgoingChars('')
+    event.target.blur();
   }
 
   useKeyPress(key => {
@@ -110,14 +112,14 @@ function HomePage() {
       */
       updatedIncomingChars = incomingChars.substring(1);
       if (updatedIncomingChars.split('').length < 20) {
-        if (sfwMode === true){
+        if (state.sfwMode === true){
           updatedIncomingChars += ' ' + generateWord();
-          console.log("Geneartion - what mode are we in? ", sfwMode)
+          console.log("Geneartion - what mode are we in? ", state.sfwMode)
           console.log("generating good words!!!")
         } 
-        else if(sfwMode === false) {
+        else if(state.sfwMode === false) {
             updatedIncomingChars += ' ' + generateNaughtyWord();
-            console.log("Generation - what mode are we in? ", sfwMode)
+            console.log("Generation - what mode are we in? ", state.sfwMode)
             console.log("generating BAD words!!")
         }
       }
