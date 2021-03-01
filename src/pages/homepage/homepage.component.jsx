@@ -42,30 +42,9 @@ function HomePage() {
   //string of words/characters excluding the first character 
   const [incomingChars, setIncomingChars] = useState(state.initialValue.substr(1)); 
 
-  function changeTypingMode(event) { 
-
-    if (state.sfwMode === true){
-      setInitialValue(generateNaughtyWord());
-      setIncomingChars(state.initialValue.substr(1))
-      console.log("sfwMode111true new intialvalue", state.initialValue)
-      setCurrentChar(state.initialValue.charAt(0))
-      event.target.blur(); 
-    }
-    else if (state.sfwMode === false){
-      setInitialValue(generateWord());
-      setIncomingChars(state.initialValue.substr(1))
-      console.log("sfwMode111false new initialvalue", state.initialValue)
-      setCurrentChar(state.initialValue.charAt(0))
-      event.target.blur(); 
-    }
-  }
-
   function changeNSFWMode(event) {
     dispatch({type: 'NSFW'});
-    // changeTypingMode(event);
-    setInitialValue(generateNaughtyWord());
     setIncomingChars(state.initialValue.substr(1))
-    console.log("sfwMode111true new intialvalue", state.initialValue)
     setCurrentChar(state.initialValue.charAt(0))
     setOutgoingChars('')
     event.target.blur(); 
@@ -73,10 +52,7 @@ function HomePage() {
 
   function changeNormalMode(event) {
     dispatch({type: 'REDO'});
-    // changeTypingMode(event);
-    setInitialValue(generateWord());
     setIncomingChars(state.initialValue.substr(1))
-    console.log("sfwMode111false new initialvalue", state.initialValue)
     setCurrentChar(state.initialValue.charAt(0))
     setOutgoingChars('')
     event.target.blur();
@@ -165,18 +141,9 @@ function HomePage() {
       WPM: {wpm} | Accuracy: {accuracy}%
     </h3>
     <span>
-      <button onClick={changeTypingMode}>FORTNITE Mode</button>
       <button onClick={changeNSFWMode}>NSFW Mode</button>
       <button onClick={changeNormalMode}>REDO</button>
-      
     </span>
-    {/* <NsfwButton /> */}
-    {/* <span>
-      <RedoButton onClick={resetApp}/>
-    </span> */}
-    {/* <div> 
-      {initialValue}
-    </div> */}
   </div>
 
   );
