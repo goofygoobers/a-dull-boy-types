@@ -16,6 +16,8 @@ const useKeyPress = callback => {
   useEffect(() => {
     const downHandler = ({ key }) => {
 
+      console.log("hi123")
+
       /* 
       console.log(key.length)
       The way we can differentiate an 'alphabet or numeric button' press vs 'shift, ctrl, enter etc.' 

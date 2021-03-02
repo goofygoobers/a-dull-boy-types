@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'; 
 import { InitialModeContext } from '../../context/initialModeContext';
+import { InitialStateContext } from '../../context/initialStateContext';
 
 const Timer = () => {
+
+  const {state, dispatch} = useContext(InitialStateContext)
 
   const [counter, setCounter] = useState('60');
   const [isStarted, setIsStarted] = useContext(InitialModeContext);

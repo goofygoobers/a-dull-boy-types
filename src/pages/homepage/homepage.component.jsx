@@ -47,6 +47,10 @@ function HomePage() {
   }
 
   useKeyPress(key => {
+    console.log("state of counter", state.isStarted)
+    if (state.isStarted === false) {
+      state.isStarted = true;
+    }
 
     if (!startTime) {
       setStartTime(currentTime());
@@ -78,13 +82,9 @@ function HomePage() {
       if (updatedIncomingChars.split('').length < 20) {
         if (state.sfwMode === true){
           updatedIncomingChars += ' ' + generateWord();
-          console.log("Geneartion - what mode are we in? ", state.sfwMode)
-          console.log("generating good words!!!")
         } 
         else if(state.sfwMode === false) {
             updatedIncomingChars += ' ' + generateNaughtyWord();
-            console.log("Generation - what mode are we in? ", state.sfwMode)
-            console.log("generating BAD words!!")
         }
       }
       setIncomingChars(updatedIncomingChars);
@@ -96,7 +96,6 @@ function HomePage() {
       if (incomingChars.charAt(0) === ' '){
         setWordCount(wordCount + 1);
         const durationInMinutes = (currentTime() - startTime) / 60000.0;
-        console.log('minutes', durationInMinutes);
         setWpm(((wordCount + 1) / durationInMinutes).toFixed(2));
       }
     }
@@ -113,10 +112,6 @@ function HomePage() {
   return (
     <div className="App">
       <div className="Character">
-      {/* <div>{state.sfwMode ?
-          <h2> Keyboard Warriors</h2>:
-          <h2> NSFW Warriors</h2>}
-      </div> */}
       <h2>{state.title}</h2>
       <Timer />
       <span className="Character-out"> 
@@ -129,7 +124,7 @@ function HomePage() {
       WPM: {wpm} | Accuracy: {accuracy}%
     </h3>
     <span>
-      <button onClick={changeNSFWMode}>NSFW Mode</button>
+      <button onClick={changeNSFWMode} tabIndex="-1">NSFW Mode</button>
       <button onClick={changeNormalMode}>REDO</button>
     </span>
   </div>

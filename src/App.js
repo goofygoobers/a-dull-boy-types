@@ -27,16 +27,16 @@ export default function App() {
           <nav>
             <ul>
               <li>
-                <StyledLink to="/">Home</StyledLink>
+                <StyledLink to="/" tabIndex="-1">Home</StyledLink>
               </li>
               <li>
-                <StyledLink to="/account">Account</StyledLink>
+                <StyledLink to="/account" tabIndex="-1">Account</StyledLink>
               </li>
               <li>
-                <StyledLink to="/config">Config</StyledLink>
+                <StyledLink to="/config" tabIndex="-1">Config</StyledLink>
               </li>
               <li>
-                <StyledLink to="/leaderboard">Leaderboard</StyledLink>
+                <StyledLink to="/leaderboard" tabIndex="-1">Leaderboard</StyledLink>
               </li>
             </ul>
           </nav>
