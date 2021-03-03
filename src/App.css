@@ -37,6 +37,13 @@
   color: #7eddd3;
 }
 
-ul {
-  list-style: none; /* Remove default bullets */
+ul { /* Remove default bullets */
+  display: inline;
+  list-style: none;
+}
+
+li {
+  display: inline;
+  /* float: left; */
+  padding-left: 15px;
 }
