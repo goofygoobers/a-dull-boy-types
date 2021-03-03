@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'; 
 import { InitialModeContext } from '../../context/initialModeContext';
-import { InitialStateContext } from '../../context/initialStateContext';
+import { TimerContext } from '../../context/timerContext';
+
 
 const Timer = () => {
 
-  const {state, dispatch} = useContext(InitialStateContext)
-
-  const [counter, setCounter] = useState('60');
+  const [counter, setCounter] = useContext(TimerContext);
   const [isStarted, setIsStarted] = useContext(InitialModeContext);
 
   useEffect(() => {
@@ -14,7 +13,11 @@ const Timer = () => {
     if (isStarted === true ){
       counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
     }
-  }, [counter, isStarted]);
+    if (isStarted === "redo"){
+      setCounter(60);
+
+    }
+  }, [counter, isStarted, setCounter]);
 
   return(
     <div> 

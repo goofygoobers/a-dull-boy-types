@@ -7,6 +7,13 @@ var testWords = generateWord();
 console.log("testword", testWords)
 
 
+function calculateWpm() {
+  var wpmCount = 0;
+  wpmCount = (wpmCount + 1)
+
+
+}
+
 const initialState = {
   title: "Keyboard Warriors",
   wordCount: 0, 
@@ -36,6 +43,7 @@ const reducer = (state, action) => {
         startTime: currentTime(),
         wpm: 0, 
         counter: 60,
+        isStarted: false,
       };
     case "NSFW": 
       return {
@@ -48,6 +56,7 @@ const reducer = (state, action) => {
         wpm: 0, 
         initialValue: generateNaughtyWord(),
         counter: 60,
+        isStarted: false,
       }
     default:
       return state;

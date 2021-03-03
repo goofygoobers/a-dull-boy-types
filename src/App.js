@@ -17,6 +17,7 @@ import { InitialModeProvider } from './context/initialModeContext';
 import { SfwModeProvider } from './context/sfwModeContext';
 import { WordProvider } from './context/wordContext';
 import { InitialStateProvider } from './context/initialStateContext';
+import { TimerProvider } from './context/timerContext';
 
 export default function App() {
 
@@ -56,18 +57,19 @@ export default function App() {
           <Route path="/config">
             <ConfigPage />
           </Route>
+        <TimerProvider>
           <InitialStateProvider>
-            <WordProvider>
-              <SfwModeProvider>
-                <InitialModeProvider>
-                    <Route path="/">
-                      <HomePage />
-                    </Route>
-              </InitialModeProvider>
-              </SfwModeProvider>
-            </WordProvider>
-          </InitialStateProvider>
-
+              <WordProvider>
+                <SfwModeProvider>
+                  <InitialModeProvider>
+                      <Route path="/">
+                        <HomePage />
+                      </Route>
+                </InitialModeProvider>
+                </SfwModeProvider>
+              </WordProvider>
+            </InitialStateProvider>
+        </TimerProvider>
         </Switch>
       </div>
     </Router>

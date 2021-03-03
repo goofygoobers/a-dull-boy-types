@@ -6,10 +6,19 @@ import { generateWord } from '../../components/wordGenerator/wordGenerator.compo
 import { generateNaughtyWord } from '../../components/wordGenerator/badWordGenerator.component';
 import useKeyPress from '../../hooks/useKeyPress';
 import { currentTime } from '../../utils/time';
+import { TimerContext } from "../../context/timerContext";
+import { InitialModeContext } from '../../context/initialModeContext';
 
 function HomePage() {
 
   const {state, dispatch} = useContext(InitialStateContext); 
+
+//tracking 
+
+  const [isStarted, setIsStarted] = useContext(InitialModeContext);
+
+  //Time counter context 
+  const [counter, setCounter] = useContext(TimerContext);
 
   //tracking typing accuracy
   const [accuracy, setAccuracy] = useState(0);
@@ -31,19 +40,21 @@ function HomePage() {
   const [incomingChars, setIncomingChars] = useState(state.initialValue.substr(1)); 
 
   function changeNSFWMode(event) {
-    dispatch({type: 'NSFW'});
+    dispatch({type: 'NSFW'})
     setIncomingChars(state.initialValue.substr(1))
     setCurrentChar(state.initialValue.charAt(0))
     setOutgoingChars('')
-    event.target.blur(); 
+    event.target.blur()
   }
 
   function changeNormalMode(event) {
-    dispatch({type: 'REDO'});
+    dispatch({type: 'REDO'})
     setIncomingChars(state.initialValue.substr(1))
     setCurrentChar(state.initialValue.charAt(0))
     setOutgoingChars('')
-    event.target.blur();
+    setIsStarted("redo")
+    // setCounter('60')
+    event.target.blur()
   }
 
   useKeyPress(key => {
