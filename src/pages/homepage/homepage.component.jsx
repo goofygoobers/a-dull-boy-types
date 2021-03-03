@@ -44,6 +44,7 @@ function HomePage() {
     setIncomingChars(state.initialValue.substr(1))
     setCurrentChar(state.initialValue.charAt(0))
     setOutgoingChars('')
+    setIsStarted("redo")
     event.target.blur()
   }
 

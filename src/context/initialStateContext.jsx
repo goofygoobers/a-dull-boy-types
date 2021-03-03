@@ -3,22 +3,14 @@ import { generateNaughtyWord } from '../components/wordGenerator/badWordGenerato
 import { generateWord } from '../components/wordGenerator/wordGenerator.component';
 import { currentTime } from '../utils/time';
 
-var testWords = generateWord();
-console.log("testword", testWords)
-
-
-function calculateWpm() {
-  var wpmCount = 0;
-  wpmCount = (wpmCount + 1)
-
-
-}
+// var testWords = generateWord();
+// console.log("testword", testWords)
 
 const initialState = {
   title: "Keyboard Warriors",
   wordCount: 0, 
   sfwMode: true, 
-  initialValue: testWords, 
+  initialValue: generateWord(), 
   accuracy: 0, 
   typedChars: '', 
   startTime: currentTime(),

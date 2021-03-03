@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'; 
+import React, { useEffect, useContext } from 'react'; 
 import { InitialModeContext } from '../../context/initialModeContext';
 import { TimerContext } from '../../context/timerContext';
 
