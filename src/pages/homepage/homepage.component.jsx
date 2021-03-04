@@ -54,7 +54,6 @@ function HomePage() {
     setCurrentChar(state.initialValue.charAt(0))
     setOutgoingChars('')
     setIsStarted("redo")
-    // setCounter('60')
     event.target.blur()
   }
 

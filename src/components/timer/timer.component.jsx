@@ -11,12 +11,13 @@ const Timer = () => {
   useEffect(() => {
 
     if (isStarted === true ){
-      counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+      var timeOutRef = counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
     }
     if (isStarted === "redo"){
       setCounter(60);
-
+      clearTimeout(timeOutRef);
     }
+
   }, [counter, isStarted, setCounter]);
 
   return(
