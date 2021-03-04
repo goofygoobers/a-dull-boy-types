@@ -8,6 +8,7 @@ import useKeyPress from '../../hooks/useKeyPress';
 import { currentTime } from '../../utils/time';
 import { TimerContext } from "../../context/timerContext";
 import { InitialModeContext } from '../../context/initialModeContext';
+import TimeButton from '../../components/timeButton/timeButton.component';
 
 function HomePage() {
 
@@ -137,6 +138,7 @@ function HomePage() {
     <span>
       <button onClick={changeNSFWMode} tabIndex="-1">NSFW Mode</button>
       <button onClick={changeNormalMode}>REDO</button>
+      <TimeButton />
     </span>
   </div>
 
