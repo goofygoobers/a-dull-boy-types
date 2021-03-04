@@ -7,13 +7,13 @@ const TimeButton = () => {
   const [counter, setCounter] = useContext(TimerContext);
   const [isStarted, setIsStarted] = useContext(InitialModeContext);
 
-  function changeTestTime() { 
-    console.log("changing test timer")
+  function changeTestTime(event) { 
     setIsStarted("CHANGE")
+    event.target.blur()
   }
 
   return(
-    <button onClick={() => changeTestTime()}>
+    <button onClick={changeTestTime}>
       15
     </button>
   )

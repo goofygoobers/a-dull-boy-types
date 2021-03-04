@@ -12,9 +12,8 @@ import TimeButton from '../../components/timeButton/timeButton.component';
 
 function HomePage() {
 
+  //overall global state 
   const {state, dispatch} = useContext(InitialStateContext); 
-
-//tracking 
 
   const [isStarted, setIsStarted] = useContext(InitialModeContext);
 
@@ -138,7 +137,7 @@ function HomePage() {
     <span>
       <button onClick={changeNSFWMode} tabIndex="-1">NSFW Mode</button>
       <button onClick={changeNormalMode}>REDO</button>
-      <TimeButton />
+      <TimeButton tabIndex="-1"/>
     </span>
   </div>
 
