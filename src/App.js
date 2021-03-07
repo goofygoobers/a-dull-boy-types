@@ -18,11 +18,13 @@ import { SfwModeProvider } from './context/sfwModeContext';
 import { WordProvider } from './context/wordContext';
 import { InitialStateProvider } from './context/initialStateContext';
 import { TimerProvider } from './context/timerContext';
+import { GlobalStyle } from '../src/globalStyles';
 
 export default function App() {
 
   return (
     <Router>
+      <GlobalStyle/>
       <div className="App">
         <div>
           <nav>

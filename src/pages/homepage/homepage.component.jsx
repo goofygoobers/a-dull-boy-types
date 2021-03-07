@@ -9,8 +9,14 @@ import { currentTime } from '../../utils/time';
 import { TimerContext } from "../../context/timerContext";
 import { InitialModeContext } from '../../context/initialModeContext';
 import TimeButton from '../../components/timeButton/timeButton.component';
+import { ResultModal } from '../../components/modal/resultModal.component';
+import  { StyledContainer } from '../../components/modal/resultModal.styled';
+import { StyledButton } from '../../components/modal/resultModal.styled';
 
 function HomePage() {
+
+  //modal state
+  const [showModal, setShowModal] = useState(false);
 
   //overall global state 
   const {state, dispatch} = useContext(InitialStateContext); 
@@ -57,6 +63,10 @@ function HomePage() {
     event.target.blur()
   }
 
+  const openModal = () => {
+    setShowModal(prev => !prev);
+    console.log("modal clicked")
+  }
   useKeyPress(key => {
     console.log("state of counter", state.isStarted)
     if (state.isStarted === false) {
@@ -119,6 +129,8 @@ function HomePage() {
         ),
       );
   });
+
+  
   
   return (
     <div className="App">
@@ -139,6 +151,10 @@ function HomePage() {
       <button onClick={changeNormalMode}>REDO</button>
       <TimeButton tabIndex="-1"/>
     </span>
+    <StyledContainer>
+      <StyledButton onClick={openModal}>I'm a Modal</StyledButton>
+      <ResultModal showModal={showModal} setShowModal={setShowModal} />
+    </StyledContainer>
   </div>
 
   );
