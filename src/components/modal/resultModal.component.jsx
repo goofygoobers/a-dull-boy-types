@@ -1,10 +1,15 @@
-import React, { useRef, useEffect, useCallback } from 'react'; 
+import React, { useRef, useEffect, useCallback, useContext } from 'react'; 
 import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 import { Background, CloseModalButton, ModalContent, ModalImg, ModalWrapper } from './resultModal.styled';
 import ModalImage from '../../resources/gotEm.jpg';
+import { WpmContext } from '../../context/wpmContext';
+import { AccuracyContext } from '../../context/accuracyContext';
 
 export const ResultModal = ({showModal, setShowModal}) => {
+
+  const [wpm, setWpm] = useContext(WpmContext);
+  const [accuracy, setAccuracy] = useContext(AccuracyContext);
 
   const modalRef = useRef()
 
@@ -41,9 +46,8 @@ export const ResultModal = ({showModal, setShowModal}) => {
           <ModalWrapper showModal={showModal}>
             <ModalImg src={ModalImage} alt='Got em!' />
               <ModalContent>
-                <h1> Are you ready?</h1>
-                <p> GOT EM! </p>
-                <button> Press me </button>
+                <p> WPM: {wpm}</p>
+                <p> Accuracy: {accuracy}% </p>
               </ModalContent>
               <CloseModalButton aria-label='Close modal' onClick={() => setShowModal (prev => !prev)} />
           </ModalWrapper>

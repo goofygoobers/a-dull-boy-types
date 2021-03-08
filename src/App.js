@@ -19,6 +19,7 @@ import { WordProvider } from './context/wordContext';
 import { InitialStateProvider } from './context/initialStateContext';
 import { TimerProvider } from './context/timerContext';
 import { WpmProvider } from './context/wpmContext';
+import { AccuracyProvider } from './context/accuracyContext';
 import { GlobalStyle } from '../src/globalStyles';
 
 export default function App() {
@@ -60,21 +61,24 @@ export default function App() {
           <Route path="/config">
             <ConfigPage />
           </Route>
-        <WpmProvider>
-          <TimerProvider>
-            <InitialStateProvider>
-                <WordProvider>
-                  <SfwModeProvider>
-                    <InitialModeProvider>
-                        <Route path="/">
-                          <HomePage />
-                        </Route>
-                  </InitialModeProvider>
-                  </SfwModeProvider>
-                </WordProvider>
-              </InitialStateProvider>
-          </TimerProvider>
-        </WpmProvider>
+        <AccuracyProvider>
+          <WpmProvider>
+            <TimerProvider>
+              <InitialStateProvider>
+                  <WordProvider>
+                    <SfwModeProvider>
+                      <InitialModeProvider>
+                          <Route path="/">
+                            <HomePage />
+                          </Route>
+                    </InitialModeProvider>
+                    </SfwModeProvider>
+                  </WordProvider>
+                </InitialStateProvider>
+            </TimerProvider>
+          </WpmProvider>
+        </AccuracyProvider>
+
         </Switch>
       </div>
     </Router>
