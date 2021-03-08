@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import '../../App.css';
 import { InitialStateContext } from '../../context/initialStateContext';
 import Timer from '../../components/timer/timer.component';
@@ -67,6 +67,17 @@ function HomePage() {
     setShowModal(prev => !prev);
     console.log("modal clicked")
   }
+
+  useEffect(() => {
+    if (counter === 0){
+      setShowModal(prev => !prev);
+      console.log("showing modal!")
+    }
+    else {
+      console.log("timer counter is NOT zero")
+    }
+  }, [counter])
+
   useKeyPress(key => {
     console.log("state of counter", state.isStarted)
     if (state.isStarted === false) {
@@ -130,8 +141,6 @@ function HomePage() {
       );
   });
 
-  
-  
   return (
     <div className="App">
       <div className="Character">
@@ -151,10 +160,10 @@ function HomePage() {
       <button onClick={changeNormalMode}>REDO</button>
       <TimeButton tabIndex="-1"/>
     </span>
-    <StyledContainer>
-      <StyledButton onClick={openModal}>I'm a Modal</StyledButton>
-      <ResultModal showModal={showModal} setShowModal={setShowModal} />
-    </StyledContainer>
+    {/* <StyledContainer> */}
+      {/* <StyledButton onClick={openModal}>I'm a Modal</StyledButton> */}
+    <ResultModal showModal={showModal} setShowModal={setShowModal} />
+    {/* </StyledContainer> */}
   </div>
 
   );
