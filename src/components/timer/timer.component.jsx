@@ -18,7 +18,7 @@ const Timer = () => {
       clearTimeout(timeOutRef);
     }
     if (isStarted === 'CHANGE'){
-      setCounter(15);
+      setCounter(3);
       clearTimeout(timeOutRef);
     }
 

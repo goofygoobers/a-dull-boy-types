@@ -8,6 +8,7 @@ import useKeyPress from '../../hooks/useKeyPress';
 import { currentTime } from '../../utils/time';
 import { TimerContext } from "../../context/timerContext";
 import { InitialModeContext } from '../../context/initialModeContext';
+import { WpmContext } from '../../context/wpmContext';
 import TimeButton from '../../components/timeButton/timeButton.component';
 import { ResultModal } from '../../components/modal/resultModal.component';
 import  { StyledContainer } from '../../components/modal/resultModal.styled';
@@ -33,7 +34,8 @@ function HomePage() {
   //tracking WPM, word count, time
   const [startTime, setStartTime] = useState(); 
   const [wordCount, setWordCount] = useState(0);
-  const [wpm, setWpm] = useState(0); 
+  // const [wpm, setWpm] = useState(0); 
+  const [wpm, setWpm] = useContext(WpmContext); 
 
   const [leftPadding, setLeftPadding] = useState(
     new Array(20).fill(' ').join('')
