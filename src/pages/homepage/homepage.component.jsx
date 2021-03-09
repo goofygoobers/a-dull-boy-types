@@ -62,6 +62,7 @@ function HomePage() {
     setCurrentChar(state.initialValue.charAt(0))
     setOutgoingChars('')
     setIsStarted("redo")
+    setWpm(0)
     event.target.blur()
   }
 

@@ -14,7 +14,6 @@ const initialState = {
   accuracy: 0, 
   typedChars: '', 
   startTime: currentTime(),
-  wpm: 0, 
   //currentChar
   //incomingChars
   //outgoingChars
@@ -31,7 +30,6 @@ const reducer = (state, action) => {
         accuracy: 0, 
         typedChars: '', 
         startTime: currentTime(),
-        wpm: 0, 
       };
     case "NSFW": 
       return {
@@ -41,7 +39,6 @@ const reducer = (state, action) => {
         wordCount: 0, 
         accuracy: 0, 
         typedChars: '', 
-        wpm: 0, 
         initialValue: generateNaughtyWord(),
       }
     case "CHANGE":
