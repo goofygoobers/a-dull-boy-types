@@ -62,13 +62,12 @@ function HomePage() {
     setCurrentChar(state.initialValue.charAt(0))
     setOutgoingChars('')
     setIsStarted("redo")
+    setWordCount(0)
     setWpm(0)
+    setAccuracy(0)
+    setTypedChars('')
+    setStartTime();
     event.target.blur()
-  }
-
-  const openModal = () => {
-    setShowModal(prev => !prev);
-    console.log("modal clicked")
   }
 
   useEffect(() => {
@@ -95,6 +94,7 @@ function HomePage() {
     console.log(key)
     let updatedOutgoingChars = outgoingChars; 
     let updatedIncomingChars = incomingChars; 
+    console.log("updatedIncomingChars", updatedIncomingChars);
 
     //if key pressed matches the current character
     if (key === currentChar) {
