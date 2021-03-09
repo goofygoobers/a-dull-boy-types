@@ -6,6 +6,7 @@ export const StyledContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh; 
+  background-color: #2d2e30;
 `
 
 export const StyledButton = styled.button`
@@ -25,7 +26,9 @@ export const Background = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
-  align-items:  center; 
+  align-items:  center;
+  background-color: #2d2e30;
+   
 `
 
 export const ModalWrapper = styled.div`
@@ -54,7 +57,7 @@ export const ModalContent = styled.div`
   justify-content: center;
   align-items: center;
   line-height: 1.8; 
-  color: #141414;
+  color: #2d2e30;;
 
   p {
     margin-bottom: 1rem

@@ -18,7 +18,7 @@ export const ResultModal = ({showModal, setShowModal}) => {
       duration: 250
     },
     opacity: showModal ? 1 : 0, 
-    transform: showModal ? `translateY(-100%)` : `translateY(-10%)`
+    transform: showModal ? `translateY(-145%)` : `translateY(-10%)`
   })
 
   const closeModal = e => {

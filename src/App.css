@@ -3,6 +3,9 @@
   font-family: monospace;
   background-color: #2d2e30;
   font-size: 40px;
+  min-width: 100%;
+  min-height: 100%;
+  position: fixed;
 }
 
 .App-logo {
