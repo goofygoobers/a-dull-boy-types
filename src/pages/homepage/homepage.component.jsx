@@ -160,7 +160,7 @@ function HomePage() {
     <span>
       <button onClick={changeNSFWMode} tabIndex="-1">NSFW Mode</button>
       <button onClick={changeNormalMode}>REDO</button>
-      <TimeButton tabIndex="-1"/>
+      <TimeButton />
     </span>
     {/* <StyledContainer> */}
       {/* <StyledButton onClick={openModal}>I'm a Modal</StyledButton> */}

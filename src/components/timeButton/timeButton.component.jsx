@@ -13,7 +13,7 @@ const TimeButton = () => {
   }
 
   return(
-    <button onClick={changeTestTime}>
+    <button onClick={changeTestTime} tabIndex="-1">
       15
     </button>
   )
