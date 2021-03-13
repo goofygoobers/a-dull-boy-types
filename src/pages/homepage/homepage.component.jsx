@@ -14,6 +14,7 @@ import TimeButton from '../../components/timeButton/timeButton.component';
 import { ResultModal } from '../../components/modal/resultModal.component';
 import  { StyledContainer } from '../../components/modal/resultModal.styled';
 import { StyledButton } from '../../components/modal/resultModal.styled';
+import { StyledCharacter } from '../../pages/homepage/homepage.styled';
 
 function HomePage() {
 
@@ -146,18 +147,19 @@ function HomePage() {
 
   return (
     <div className="App">
-      <div className="Character">
-      <h2>{state.title}</h2>
-      <Timer />
-      <span className="Character-out"> 
-        {(leftPadding + outgoingChars).slice(-20)}
-      </span>
-      <span className="Character-current">{currentChar}</span>
-      <span>{incomingChars.substr(0,20)}</span>
-      </div>
-    <h3 className="Character"> 
-      WPM: {wpm} | Accuracy: {accuracy}%
-    </h3>
+      <StyledCharacter>
+        <h2>{state.title}</h2>
+        <Timer />
+        <span className="Character-out"> 
+          {(leftPadding + outgoingChars).slice(-20)}
+        </span>
+        <span className="Character-current">{currentChar}</span>
+        <span>{incomingChars.substr(0,20)}</span>
+        <h3 className="Character"> 
+          WPM: {wpm} | Accuracy: {accuracy}%
+        </h3>
+      </StyledCharacter>
+      
     <span>
       <button onClick={changeNSFWMode} tabIndex="-1">NSFW Mode</button>
       <button onClick={changeNormalMode}>REDO</button>

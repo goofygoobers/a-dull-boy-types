@@ -8,10 +8,6 @@
   position: fixed;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -23,17 +19,15 @@
   color: white;
 }
 
-.App-link {
-  color: #09d3ac;
-}
-
 .Character {
   white-space: pre;
   color: #54585c;
+  
 }
 
 .Character-current {
   background-color: #4cbfb8;
+
 }
 
 .Character-out {
@@ -47,6 +41,5 @@ ul { /* Remove default bullets */
 
 li {
   display: inline;
-  /* float: left; */
   padding-left: 15px;
 }
