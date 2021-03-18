@@ -20,6 +20,7 @@ import { InitialStateProvider } from './context/initialStateContext';
 import { TimerProvider } from './context/timerContext';
 import { WpmProvider } from './context/wpmContext';
 import { AccuracyProvider } from './context/accuracyContext';
+import { FontSizeProvider } from './context/fontSizeContext';
 import { GlobalStyle } from '../src/globalStyles';
 
 export default function App() {
@@ -51,34 +52,39 @@ export default function App() {
         <Switch>
         
           <Route path="/leaderboard">
-            <LeaderboardPage /> 
-          </Route>
+              <LeaderboardPage /> 
+            </Route>
 
-          <Route path="/account">
-            <AccountPage />
-          </Route>
+            <Route path="/account">
+              <AccountPage />
+            </Route>
 
-          <Route path="/config">
-            <ConfigPage />
-          </Route>
-        <AccuracyProvider>
-          <WpmProvider>
-            <TimerProvider>
-              <InitialStateProvider>
-                  <WordProvider>
-                    <SfwModeProvider>
-                      <InitialModeProvider>
-                          <Route path="/">
-                            <HomePage />
-                          </Route>
-                    </InitialModeProvider>
-                    </SfwModeProvider>
-                  </WordProvider>
-                </InitialStateProvider>
-            </TimerProvider>
-          </WpmProvider>
-        </AccuracyProvider>
+          <FontSizeProvider>
+            <Route path="/config">
+              <ConfigPage />
+            </Route>
+          
+              <InitialStateProvider> 
+                <AccuracyProvider>
+                  <WpmProvider>
+                    <TimerProvider>
+                      <WordProvider>
+                        <SfwModeProvider>
+                          <InitialModeProvider>
 
+                    <Route path="/">
+                      <HomePage />
+                    </Route>
+
+                            </InitialModeProvider>
+                          </SfwModeProvider>
+                        </WordProvider>
+                    </TimerProvider>
+                  </WpmProvider>
+                </AccuracyProvider>
+              </InitialStateProvider>
+            </FontSizeProvider>
+            
         </Switch>
       </div>
     </Router>

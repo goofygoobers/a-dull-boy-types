@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link, Div } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export const StyledLink = styled(Link)`
   color: #7eddd3;
@@ -8,8 +8,13 @@ export const StyledLink = styled(Link)`
 `;
 
 export const StyledCharacter = styled.div`
-  color: #FFFF00;
-  background-color: #4cbfb8;
-  font-family: Bradley Hand; 
-  font-size: 40px;
+  color: #54585c;
+  background-color: #2d2e30;;
+  font-family: monospace; 
+  // font-size: 30px;
+  font-size: ${({fontSize}) => {
+    if(fontSize === 'small') return '20px';
+    else if(fontSize === 'medium') return '30px'
+    else return '40px';
+  }}
 `;

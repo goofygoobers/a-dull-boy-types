@@ -10,10 +10,9 @@ import { TimerContext } from "../../context/timerContext";
 import { InitialModeContext } from '../../context/initialModeContext';
 import { WpmContext } from '../../context/wpmContext';
 import { AccuracyContext } from '../../context/accuracyContext';
+import { FontSizeContext } from '../../context/fontSizeContext';
 import TimeButton from '../../components/timeButton/timeButton.component';
 import { ResultModal } from '../../components/modal/resultModal.component';
-import  { StyledContainer } from '../../components/modal/resultModal.styled';
-import { StyledButton } from '../../components/modal/resultModal.styled';
 import { StyledCharacter } from '../../pages/homepage/homepage.styled';
 
 function HomePage() {
@@ -23,6 +22,9 @@ function HomePage() {
 
   //overall global state 
   const {state, dispatch} = useContext(InitialStateContext); 
+
+  //font size context
+  const [fontSize, setFontSize] = useContext(FontSizeContext);
 
   const [isStarted, setIsStarted] = useContext(InitialModeContext);
 
@@ -147,7 +149,7 @@ function HomePage() {
 
   return (
     <div className="App">
-      <StyledCharacter>
+      <StyledCharacter fontSize={fontSize}>
         <h2>{state.title}</h2>
         <Timer />
         <span className="Character-out"> 

@@ -1,14 +1,13 @@
 import React from 'react'; 
+import { FontSizeButton } from '../../components/fontSizeButton/fontSizeButton.component';
 
 function ConfigPage(){
+
   return(
     <div>
-      <h2>Configuration page includes: </h2>
-      <ul>
-        <li>Font controller</li>
-        <li>Timer on/off + opacity control</li>
-        <li>Theme (light or dark mode)</li>
-      </ul>
+      <h1>Configuration</h1>
+      <h2>font size</h2>
+      <FontSizeButton/> 
     </div>
   )
 }

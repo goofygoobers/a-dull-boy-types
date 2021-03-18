@@ -3,9 +3,6 @@ import { generateNaughtyWord } from '../components/wordGenerator/badWordGenerato
 import { generateWord } from '../components/wordGenerator/wordGenerator.component';
 import { currentTime } from '../utils/time';
 
-// var testWords = generateWord();
-// console.log("testword", testWords)
-
 const initialState = {
   title: "Keyboard Warriors",
   wordCount: 0, 
@@ -14,9 +11,6 @@ const initialState = {
   accuracy: 0, 
   typedChars: '', 
   startTime: currentTime(),
-  //currentChar
-  //incomingChars
-  //outgoingChars
 };
 
 const reducer = (state, action) => {
@@ -44,7 +38,6 @@ const reducer = (state, action) => {
     case "CHANGE":
       return {
         ...state,
-        
       }
     default:
       return state;
