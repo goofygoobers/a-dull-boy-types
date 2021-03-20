@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
-import {TimerContext } from '../../context/timerContext';
+
 import { InitialModeContext } from '../../context//initialModeContext';
 
 const TimeButton = () => { 
 
-  const [counter, setCounter] = useContext(TimerContext);
-  const [isStarted, setIsStarted] = useContext(InitialModeContext);
+  const [isStarted, setIsStarted] = useContext(InitialModeContext); //eslint-disable-line no-unused-vars
 
   function changeTestTime(event) { 
     setIsStarted("CHANGE")

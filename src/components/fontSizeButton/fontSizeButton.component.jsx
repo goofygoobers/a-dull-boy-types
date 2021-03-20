@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const FontSizeButton = () => {
 
-  const [fontSize, setFontSize] = useContext(FontSizeContext);
+  const [fontSize, setFontSize] = useContext(FontSizeContext); //eslint-disable-line no-unused-vars
 
   const classes = useStyles();
 

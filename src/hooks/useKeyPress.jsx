@@ -11,7 +11,7 @@ const useKeyPress = callback => {
   */
 
   const [keyPressed, setKeyPressed] = useState();
-  const [isStarted, setIsStarted] = useContext(InitialModeContext); 
+  const [isStarted, setIsStarted] = useContext(InitialModeContext); //eslint-disable-line no-unused-vars
 
   useEffect(() => {
     const downHandler = ({ key }) => {

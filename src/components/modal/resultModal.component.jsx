@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useCallback, useContext } from 'react'; 
 import { useSpring, animated } from 'react-spring';
-import styled from 'styled-components';
 import { Background, CloseModalButton, ModalContent, ModalImg, ModalWrapper } from './resultModal.styled';
 import ModalImage from '../../resources/gotEm.jpg';
 import { WpmContext } from '../../context/wpmContext';
@@ -8,8 +7,8 @@ import { AccuracyContext } from '../../context/accuracyContext';
 
 export const ResultModal = ({showModal, setShowModal}) => {
 
-  const [wpm, setWpm] = useContext(WpmContext);
-  const [accuracy, setAccuracy] = useContext(AccuracyContext);
+  const [wpm, setWpm] = useContext(WpmContext); //eslint-disable-line no-unused-vars
+  const [accuracy, setAccuracy] = useContext(AccuracyContext); //eslint-disable-line no-unused-vars
 
   const modalRef = useRef()
 

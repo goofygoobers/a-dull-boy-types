@@ -24,12 +24,12 @@ function HomePage() {
   const {state, dispatch} = useContext(InitialStateContext); 
 
   //font size context
-  const [fontSize, setFontSize] = useContext(FontSizeContext);
+  const [fontSize, setFontSize] = useContext(FontSizeContext); //eslint-disable-line no-unused-vars
 
-  const [isStarted, setIsStarted] = useContext(InitialModeContext);
+  const [isStarted, setIsStarted] = useContext(InitialModeContext); //eslint-disable-line no-unused-vars
 
   //Time counter context 
-  const [counter, setCounter] = useContext(TimerContext);
+  const [counter, setCounter] = useContext(TimerContext); //eslint-disable-line no-unused-vars
 
   //tracking typing accuracy
   const [accuracy, setAccuracy] = useContext(AccuracyContext);

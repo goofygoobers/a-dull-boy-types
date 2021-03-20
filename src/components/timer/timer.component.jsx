@@ -6,7 +6,7 @@ import { TimerContext } from '../../context/timerContext';
 const Timer = () => {
 
   const [counter, setCounter] = useContext(TimerContext);
-  const [isStarted, setIsStarted] = useContext(InitialModeContext);
+  const [isStarted, setIsStarted] = useContext(InitialModeContext); //eslint-disable-line no-unused-vars
 
   useEffect(() => {
 
