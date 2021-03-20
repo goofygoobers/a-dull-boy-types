@@ -10,7 +10,11 @@ export const StyledLink = styled(Link)`
 export const StyledCharacter = styled.div`
   color: #54585c;
   background-color: #2d2e30;;
-  font-family: monospace; 
+  font-family: ${({fontFamily}) => {
+    if(fontFamily === 'papyrus') return 'paryrus';
+    else if(fontFamily === 'helvetica') return 'helvetica';
+    else return 'monospace';
+  }}; 
   // font-size: 30px;
   font-size: ${({fontSize}) => {
     if(fontSize === 'small') return '20px';

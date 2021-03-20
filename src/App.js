@@ -20,73 +20,80 @@ import { InitialStateProvider } from './context/initialStateContext';
 import { TimerProvider } from './context/timerContext';
 import { WpmProvider } from './context/wpmContext';
 import { AccuracyProvider } from './context/accuracyContext';
+import { FontFamilyProvider } from './context/fontFamilyContext';
 import { FontSizeProvider } from './context/fontSizeContext';
 import { GlobalStyle } from '../src/globalStyles';
+
 
 export default function App() {
 
   return (
     <Router>
-      <GlobalStyle/>
-      <div className="App">
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <StyledLink to="/" tabIndex="-1">Home </StyledLink>
-              </li>
-              <li>
-                <StyledLink to="/account" tabIndex="-1">Account </StyledLink>
-              </li>
-              <li>
-                <StyledLink to="/config" tabIndex="-1">Config </StyledLink>
-              </li>
-              <li>
-                <StyledLink to="/leaderboard" tabIndex="-1">Leaderboard </StyledLink>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-        
-          <Route path="/leaderboard">
-              <LeaderboardPage /> 
-            </Route>
-
-            <Route path="/account">
-              <AccountPage />
-            </Route>
-
-          <FontSizeProvider>
-            <Route path="/config">
-              <ConfigPage />
-            </Route>
+      <FontFamilyProvider>
+        <FontSizeProvider>
+        <GlobalStyle/>
+        <div className="App">
+          <div>
+            <nav>
+              <ul>
+                <li>
+                  <StyledLink to="/" tabIndex="-1">Home </StyledLink>
+                </li>
+                <li>
+                  <StyledLink to="/account" tabIndex="-1">Account </StyledLink>
+                </li>
+                <li>
+                  <StyledLink to="/config" tabIndex="-1">Config </StyledLink>
+                </li>
+                <li>
+                  <StyledLink to="/leaderboard" tabIndex="-1">Leaderboard </StyledLink>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          {/* A <Switch> looks through its children <Route>s and
+              renders the first one that matches the current URL. */}
+          <Switch>
           
-              <InitialStateProvider> 
-                <AccuracyProvider>
-                  <WpmProvider>
-                    <TimerProvider>
-                      <WordProvider>
-                        <SfwModeProvider>
-                          <InitialModeProvider>
+            <Route path="/leaderboard">
+                <LeaderboardPage /> 
+              </Route>
 
-                    <Route path="/">
-                      <HomePage />
-                    </Route>
+              <Route path="/account">
+                <AccountPage />
+              </Route>
 
-                            </InitialModeProvider>
-                          </SfwModeProvider>
-                        </WordProvider>
-                    </TimerProvider>
-                  </WpmProvider>
-                </AccuracyProvider>
-              </InitialStateProvider>
-            </FontSizeProvider>
             
-        </Switch>
-      </div>
+              <Route path="/config">
+                <ConfigPage />
+              </Route>
+            
+            <InitialStateProvider> 
+              <AccuracyProvider>
+                <WpmProvider>
+                  <TimerProvider>
+                    <WordProvider>
+                      <SfwModeProvider>
+                        <InitialModeProvider>
+
+                  <Route path="/">
+                    <HomePage />
+                  </Route>
+
+                          </InitialModeProvider>
+                        </SfwModeProvider>
+                      </WordProvider>
+                  </TimerProvider>
+                </WpmProvider>
+              </AccuracyProvider>
+            </InitialStateProvider>
+
+          </Switch>
+        </div>
+        </FontSizeProvider>
+      </FontFamilyProvider>
+
     </Router>
+
   );
 }

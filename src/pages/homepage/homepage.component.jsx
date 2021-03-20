@@ -11,9 +11,11 @@ import { InitialModeContext } from '../../context/initialModeContext';
 import { WpmContext } from '../../context/wpmContext';
 import { AccuracyContext } from '../../context/accuracyContext';
 import { FontSizeContext } from '../../context/fontSizeContext';
+import { FontFamilyContext } from '../../context/fontFamilyContext';
 import TimeButton from '../../components/timeButton/timeButton.component';
 import { ResultModal } from '../../components/modal/resultModal.component';
 import { StyledCharacter } from '../../pages/homepage/homepage.styled';
+
 
 function HomePage() {
 
@@ -25,6 +27,9 @@ function HomePage() {
 
   //font size context
   const [fontSize, setFontSize] = useContext(FontSizeContext); //eslint-disable-line no-unused-vars
+
+  //family font
+  const [fontFamily, setFontFamily] = useContext(FontFamilyContext); //eslint-disable-line no-unused-vars
 
   const [isStarted, setIsStarted] = useContext(InitialModeContext); //eslint-disable-line no-unused-vars
 
@@ -149,7 +154,7 @@ function HomePage() {
 
   return (
     <div className="App">
-      <StyledCharacter fontSize={fontSize}>
+      <StyledCharacter fontFamily ={fontFamily} fontSize={fontSize}>
         <h2>{state.title}</h2>
         <Timer />
         <span className="Character-out"> 
