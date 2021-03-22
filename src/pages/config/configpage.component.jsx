@@ -1,17 +1,19 @@
 import React from 'react'; 
 import { FontSizeButton } from '../../components/fontSizeButton/fontSizeButton.component';
 import { FontFamilyButton } from '../../components/fontFamilyButton/fontFamilyButton.component';
+import { StyledSectionTitle } from './configpage.styled';
 
 function ConfigPage(){
 
   return(
     <div>
+      <StyledSectionTitle>
       <h1>Configuration</h1>
-      <h2> font family</h2>
+      Font Family 
       <FontFamilyButton /> 
-      <h2>font size</h2>
-      <FontSizeButton/> 
-
+      Font Size
+      <FontSizeButton/>
+      </StyledSectionTitle>
     </div>
   )
 }
