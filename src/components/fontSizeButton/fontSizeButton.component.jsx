@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'right',
     '& > *': {
       margin: theme.spacing(1),
     },

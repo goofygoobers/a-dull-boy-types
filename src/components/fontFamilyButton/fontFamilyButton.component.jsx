@@ -6,9 +6,10 @@ import { FontFamilyContext } from '../../context/fontFamilyContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    // alignItems: 'center',
     '& > *': {
       margin: theme.spacing(1),
     },
