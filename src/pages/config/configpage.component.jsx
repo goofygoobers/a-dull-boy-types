@@ -8,7 +8,7 @@ function ConfigPage(){
   return(
     <div>
       <StyledSectionTitle>
-      <h1>Configuration</h1>
+      <h2>Configuration</h2>
       Font Family 
       <FontFamilyButton /> 
       Font Size
