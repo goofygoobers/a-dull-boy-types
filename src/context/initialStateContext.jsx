@@ -11,6 +11,7 @@ const initialState = {
   accuracy: 0, 
   typedChars: '', 
   startTime: currentTime(),
+  timerHidden: false,
 };
 
 const reducer = (state, action) => {

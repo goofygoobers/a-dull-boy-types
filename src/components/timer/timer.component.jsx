@@ -1,12 +1,14 @@
 import React, { useEffect, useContext } from 'react'; 
 import { InitialModeContext } from '../../context/initialModeContext';
-import { TimerContext } from '../../context/timerContext';
-
+import { TimerContext } from '../../context/timerContext'
+import { StyledTimer } from '../../components/timer/timer.styled';
+import { TimerHiddenContext } from '../../context/timerHiddenContext';
 
 const Timer = () => {
 
   const [counter, setCounter] = useContext(TimerContext);
   const [isStarted, setIsStarted] = useContext(InitialModeContext); //eslint-disable-line no-unused-vars
+  const [timerHidden, setTimerHidden] = useContext(TimerHiddenContext);
 
   useEffect(() => {
 
@@ -26,7 +28,10 @@ const Timer = () => {
 
   return(
     <div> 
-      <h1> {counter} </h1>
+      <StyledTimer timerHidden={timerHidden}>
+        {counter}
+      </StyledTimer>
+      {/* <h1> {counter} </h1> */}
     </div>
   )
 }
