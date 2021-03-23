@@ -2,12 +2,12 @@
 
  export const StyledSectionTitle = styled.div`
   color: #54585c;
-  display: grid;
+  display: inline-block;
   grid-template-areas:
     "title title"
     "text buttons";
   grid-template-columns: 1fr 1fr;
-  align-items: left;
+  align-items: center;
 
  `
 

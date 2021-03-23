@@ -3,6 +3,7 @@ import { FontSizeButton } from '../../components/fontSizeButton/fontSizeButton.c
 import { FontFamilyButton } from '../../components/fontFamilyButton/fontFamilyButton.component';
 import { StyledSectionTitle } from './configpage.styled';
 import { StyledPageTitle } from './configpage.styled';
+import ToggleTimerButton from '../../components/toggleTimerButton/toggleTimerButton.component';
 
 function ConfigPage(){
 
@@ -18,9 +19,9 @@ function ConfigPage(){
         Font Size
         <FontSizeButton/>
         Timer
-        
+        <ToggleTimerButton/>
       </StyledSectionTitle>
-   
+
        
 
       
