@@ -8,7 +8,7 @@ const Timer = () => {
 
   const [counter, setCounter] = useContext(TimerContext);
   const [isStarted, setIsStarted] = useContext(InitialModeContext); //eslint-disable-line no-unused-vars
-  const [timerHidden, setTimerHidden] = useContext(TimerHiddenContext);
+  const [timerHidden, setTimerHidden] = useContext(TimerHiddenContext); //eslint-disable-line no-unused-vars
 
   useEffect(() => {
 
@@ -31,7 +31,6 @@ const Timer = () => {
       <StyledTimer timerHidden={timerHidden}>
         {counter}
       </StyledTimer>
-      {/* <h1> {counter} </h1> */}
     </div>
   )
 }
